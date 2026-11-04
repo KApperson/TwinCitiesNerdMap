@@ -1,0 +1,4 @@
+name,address,lat,lng,website,tcg,ttrpg,boardgames,retro
+The Battleground Cafe,White Bear Lake MN,45.0841,-93.0097,https://battlegroundcafe.com,TRUE,TRUE,TRUE,FALSE
+Dreamers Vault Games,Champlin MN,45.1888,-93.3975,https://dreamersvaultgames.com,TRUE,TRUE,TRUE,FALSE
+Level Up Games,St. Paul MN,44.9442,-93.1022,https://levelupgamesmn.com,TRUE,FALSE,TRUE,TRUE
