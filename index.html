@@ -6,18 +6,7 @@
     <title>Game Store Finder</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <style>
-        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; height: 100vh; }
-        #sidebar { width: 300px; background: #1a1a1a; color: #fff; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.3); }
-        #map { flex-grow: 1; height: 100%; }
-        h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
-        .filter-group { display: flex; flex-direction: column; gap: 12px; }
-        .filter-label { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 1rem; }
-        .filter-label input { transform: scale(1.2); cursor: pointer; }
-        .store-list-item { padding: 10px; border-bottom: 1px solid #333; font-size: 0.9rem; }
-        .store-list-item a { color: #ffdd57; text-decoration: none; }
-        #store-list { overflow-y: auto; flex-grow: 1; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -32,7 +21,7 @@
 			<label class="filter-label"><input type="checkbox" id="comics">Comics</label>
 			<label class="filter-label"><input type="checkbox" id="books">Books</label>
         </div>
-        <hr style="width:100%; border-color:#333;">
+        <hr class="sidebar-divider">
         <div id="store-list"></div>
     </div>
 
@@ -48,6 +37,25 @@
     <script>
         // Global storage for the stores once loaded
         let storesData = [];
+        let storeTagFields = [];
+
+        const tagLabels = {
+            tcg: 'TCG',
+            ttrpg: 'TTRPG',
+            boardgames: 'Board Games',
+            videogames: 'Video Games',
+            escaperoom: 'Escape Room',
+            '3rdspace': '3rd Space',
+            foodinhouse: 'Food In-House',
+            outsidefood: 'Outside Food'
+        };
+
+        function formatTagLabel(field) {
+            return tagLabels[field.toLowerCase()] || field
+                .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+                .replace(/[_-]+/g, ' ')
+                .replace(/\b\w/g, character => character.toUpperCase());
+        }
 
         // Initialize Map near Twin Cities
         const map = L.map('map').setView([45.0, -93.15], 9);
@@ -87,10 +95,17 @@
 
                 if (matchesAll && store.lat && store.lng) {
                     const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)]);
+                    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${store.lat},${store.lng}`)}`;
+                    const tagsHtml = storeTagFields
+                        .filter(field => String(store[field]).trim().toUpperCase() === 'TRUE')
+                        .map(field => `<span class="store-tag store-tag-${field.toLowerCase()}">${formatTagLabel(field)}</span>`)
+                        .join('');
                     const popupContent = `
                         <strong>${store.name}</strong><br>
                         ${store.address}<br>
-                        <a href="${store.website}" target="_blank">Visit Website</a>
+                        <div class="store-tags">${tagsHtml}</div>
+                        <a href="${store.website}" target="_blank" rel="noopener noreferrer">Visit Website</a><br>
+                        <a class="directions-button" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>
                     `;
                     marker.bindPopup(popupContent);
                     markerLayer.addLayer(marker);
@@ -109,6 +124,8 @@
             header: true,
             complete: function(results) {
                 storesData = results.data;
+                const websiteIndex = results.meta.fields.indexOf('website');
+                storeTagFields = results.meta.fields.slice(websiteIndex + 1);
                 updateMap(); // Initial pass to render pins once data lands
             }
         });
