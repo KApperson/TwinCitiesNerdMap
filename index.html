@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store Finder</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com" />
+    <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; }
+        #sidebar { width: 300px; background: #1a1a1a; color: #fff; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.3); }
+        #map { flex-grow: 1; height: 100%; }
+        h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
+        .filter-group { display: flex; flex-direction: column; gap: 12px; }
+        .filter-label { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 1rem; }
+        .filter-label input { transform: scale(1.2); cursor: pointer; }
+        .store-list-item { padding: 10px; border-bottom: 1px solid #333; font-size: 0.9rem; }
+        .store-list-item a { color: #ffdd57; text-decoration: none; }
+        #store-list { overflow-y: auto; flex-grow: 1; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>Store Filter</h2>
+        <div class="filter-group">
+            <label class="filter-label"><input type="checkbox" id="tcg"> Trading Card Games (TCG)</label>
+            <label class="filter-label"><input type="checkbox" id="ttrpg"> Tabletop RPGs (TTRPG)</label>
+            <label class="filter-label"><input type="checkbox" id="boardgames"> Board Games</label>
+            <label class="filter-label"><input type="checkbox" id="retro"> Retro Video Games</label>
+        </div>
+        <hr style="width:100%; border-color:#333;">
+        <div id="store-list"></div>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script href="https://unpkg.com"></script>
+    <!-- Your Store Data -->
+    <script src="data.js"></script>
+
+    <script>
+        // 1. Initialize Map centered near the Twin Cities area
+        const map = L.map('map').setView([45.0, -93.15], 9);
+
+        // 2. Load Free OpenStreetMap Tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Layer group to manage pins dynamically
+        const markerLayer = L.layerGroup().addTo(map);
+
+        // 3. Main Filter Engine
+        function updateMap() {
+            // Clear all existing pins and text listings
+            markerLayer.clearLayers();
+            const listContainer = document.getElementById('store-list');
+            listContainer.innerHTML = '';
+
+            // Find which filters are currently checked
+            const activeFilters = {
+                tcg: document.getElementById('tcg').checked,
+                ttrpg: document.getElementById('ttrpg').checked,
+                boardgames: document.getElementById('boardgames').checked,
+                retro: document.getElementById('retro').checked
+            };
+
+            // Process each store
+            STORES_DATA.forEach(store => {
+                // Multi-criteria checking: Store must match ALL checked boxes (AND logic)
+                let matchesAll = true;
+                for (let key in activeFilters) {
+                    if (activeFilters[key] && !store.specialties[key]) {
+                        matchesAll = false;
+                    }
+                }
+
+                if (matchesAll) {
+                    // Create Map Marker
+                    const marker = L.marker([store.lat, store.lng]);
+                    const popupContent = `
+                        <strong>${store.name}</strong><br>
+                        ${store.address}<br>
+                        <a href="${store.website}" target="_blank">Visit Website</a>
+                    `;
+                    marker.bindPopup(popupContent);
+                    markerLayer.addLayer(marker);
+
+                    // Create Text Listing in Sidebar
+                    const item = document.createElement('div');
+                    item.className = 'store-list-item';
+                    item.innerHTML = `<strong>${store.name}</strong><br><a href="${store.website}" target="_blank">Website</a>`;
+                    listContainer.appendChild(item);
+                }
+            });
+        }
+
+        // 4. Attach Event Listeners to Checkboxes
+        document.querySelectorAll('.filter-group input').forEach(input => {
+            input.addEventListener('change', updateMap);
+        });
+
+        // Run initially to render all stores on page load
+        updateMap();
+    </script>
+</body>
+</html>
