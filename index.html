@@ -7,7 +7,7 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; }
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; height: 100vh; }
         #sidebar { width: 300px; background: #1a1a1a; color: #fff; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.3); }
         #map { flex-grow: 1; height: 100%; }
         h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
@@ -37,29 +37,31 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!-- Your Store Data -->
-    <script src="Storedata.js"></script>
+   
+	<!-- 2. Papa Parse Engine for CSV Translation -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.6.1/papaparse.min.js"></script>
+
 
     <script>
-        // 1. Initialize Map centered near the Twin Cities area
+        // Global storage for the stores once loaded
+        let storesData = [];
+
+        // Initialize Map near Twin Cities
         const map = L.map('map').setView([45.0, -93.15], 9);
 
-        // 2. Load Free OpenStreetMap Tiles
+        // Load Free OpenStreetMap Tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Layer group to manage pins dynamically
         const markerLayer = L.layerGroup().addTo(map);
 
-        // 3. Main Filter Engine
+        // 3. Filter Engine
         function updateMap() {
-            // Clear all existing pins and text listings
             markerLayer.clearLayers();
             const listContainer = document.getElementById('store-list');
             listContainer.innerHTML = '';
 
-            // Find which filters are currently checked
             const activeFilters = {
                 tcg: document.getElementById('tcg').checked,
                 ttrpg: document.getElementById('ttrpg').checked,
@@ -67,19 +69,21 @@
                 retro: document.getElementById('retro').checked
             };
 
-            // Process each store
-            STORES_DATA.forEach(store => {
-                // Multi-criteria checking: Store must match ALL checked boxes (AND logic)
+            storesData.forEach(store => {
                 let matchesAll = true;
+                
                 for (let key in activeFilters) {
-                    if (activeFilters[key] && !store.specialties[key]) {
-                        matchesAll = false;
+                    if (activeFilters[key]) {
+                        // CSV true/false evaluations parse as strings ("TRUE" / "FALSE")
+                        const isSpecialist = String(store[key]).trim().toUpperCase() === "TRUE";
+                        if (!isSpecialist) {
+                            matchesAll = false;
+                        }
                     }
                 }
 
-                if (matchesAll) {
-                    // Create Map Marker
-                    const marker = L.marker([store.lat, store.lng]);
+                if (matchesAll && store.lat && store.lng) {
+                    const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)]);
                     const popupContent = `
                         <strong>${store.name}</strong><br>
                         ${store.address}<br>
@@ -88,7 +92,6 @@
                     marker.bindPopup(popupContent);
                     markerLayer.addLayer(marker);
 
-                    // Create Text Listing in Sidebar
                     const item = document.createElement('div');
                     item.className = 'store-list-item';
                     item.innerHTML = `<strong>${store.name}</strong><br><a href="${store.website}" target="_blank">Website</a>`;
@@ -97,13 +100,20 @@
             });
         }
 
-        // 4. Attach Event Listeners to Checkboxes
+        // 4. Download and Stream CSV Data Natively
+        Papa.parse('stores.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                storesData = results.data;
+                updateMap(); // Initial pass to render pins once data lands
+            }
+        });
+
+        // 5. Attach Filter Event Listeners
         document.querySelectorAll('.filter-group input').forEach(input => {
             input.addEventListener('change', updateMap);
         });
-
-        // Run initially to render all stores on page load
-        updateMap();
     </script>
 </body>
 </html>
