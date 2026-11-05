@@ -17,7 +17,7 @@
 <body>
 
     <div id="sidebar">
-        <h2>Store Filter</h2>
+        <h2 id="store-filter-title"></h2>
         <div id="category-filters" class="filter-group"></div>
         <hr class="sidebar-divider">
         <div class="filter-group game-store-filters">
@@ -62,6 +62,22 @@
 
         function hasStoreTag(store, field) {
             return String(store[field] || '').trim().toUpperCase() === 'TRUE';
+        }
+
+        function getStorePinColor(store) {
+            const pinColors = SITE_CONFIG.pins;
+            const isConfiguredColor = color => typeof color === 'string' && color.trim() !== '';
+            const configuredCategory = SITE_CONFIG.filters.categories
+                .find(category => hasStoreTag(store, category.field) && isConfiguredColor(pinColors.categories[category.field]));
+
+            if (configuredCategory) return pinColors.categories[configuredCategory.field];
+
+            const configuredSubcategory = storeFeatureFields
+                .find(field => hasStoreTag(store, field) && isConfiguredColor(pinColors.subcategories[field]));
+
+            if (configuredSubcategory) return pinColors.subcategories[configuredSubcategory];
+            if (isConfiguredColor(pinColors.categories.gameStores)) return pinColors.categories.gameStores;
+            return pinColors.defaultColor;
         }
 
         function escapeHtml(value) {
@@ -114,12 +130,14 @@
 
         function syncFeatureFilters() {
             const enabled = document.getElementById('filter-game-stores').checked;
+            document.querySelector('.game-store-filters').classList.toggle('expanded', enabled);
             document.querySelectorAll('#feature-filters input').forEach(checkbox => {
                 checkbox.disabled = !enabled;
                 if (!enabled) checkbox.checked = false;
             });
         }
 
+        document.getElementById('store-filter-title').textContent = SITE_CONFIG.page.title;
         renderFilterControls();
 
         const map = L.map('map').setView(
@@ -172,7 +190,15 @@
                     (gameStoresSelected && isGameStore && matchesFeatures);
 
                 if (matchesCategories && store.lat && store.lng) {
-                    const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)]);
+                    const pinColor = escapeHtml(getStorePinColor(store));
+                    const pinIcon = L.divIcon({
+                        className: 'store-pin-icon',
+                        html: `<svg viewBox="0 0 25 41" aria-hidden="true"><path d="M12.5 1C6.2 1 1 6.2 1 12.5c0 8.2 11.5 27 11.5 27s11.5-18.8 11.5-27C24 6.2 18.8 1 12.5 1Z" fill="${pinColor}" stroke="#fff" stroke-width="1.5"/><circle cx="12.5" cy="12.5" r="3.5" fill="#fff"/></svg>`,
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34]
+                    });
+                    const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)], { icon: pinIcon });
                     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${store.lat},${store.lng}`)}`;
                     const summaryHtml = store.summary?.trim()
                         ? `<div class="store-summary">${escapeHtml(store.summary)}</div>`

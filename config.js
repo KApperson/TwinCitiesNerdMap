@@ -12,6 +12,23 @@ window.SITE_CONFIG = {
         zoom: 9
     },
 
+    // Pin colors: omitted or null overrides use the next matching color, then defaultColor.
+    // Specific categories win first, then matching subcategories, then the general gameStores color.
+    pins: {
+        defaultColor: '#3388ff',
+        categories: {
+            // Use filter category fields here, such as bookstore or comics.
+            // bookstore: '#a855f7',
+            // comics: '#e11d48',
+            // gameStores: '#16a34a'
+        },
+        subcategories: {
+            // Use CSV tag fields here, such as tcg or boardgames.
+            // tcg: '#f97316',
+            // boardgames: '#14b8a6'
+        }
+    },
+
     // Filter groups: category fields are independent; game-store subfilters match together.
     filters: {
         categories: [

@@ -1,11 +1,18 @@
 
+:root {
+	--sidebar-background-color: #1a1a1a;
+	--sidebar-text-color: #fff;
+	--sidebar-accent-color: #ffdd57;
+	--website-link-color: #ffdd57;
+}
+
 /*Body*/
 body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; height: 100vh; overflow: hidden; }
-h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
+h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 
 /*Sidebar*/
 
-#sidebar { width: 300px; flex: 0 0 300px; background: #1a1a1a; color: #fff; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.3); overflow: hidden; transition: flex-basis 220ms ease, padding 220ms ease; }
+#sidebar { width: 300px; flex: 0 0 300px; background: var(--sidebar-background-color); color: var(--sidebar-text-color); padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.3); overflow: hidden; transition: flex-basis 220ms ease, padding 220ms ease; }
 #sidebar-toggle { flex: 0 0 32px; height: 100vh; padding: 0; display: grid; place-items: center; box-sizing: border-box; border: 0; border-right: 1px solid #333; background: #242424; color: #ffdd57; cursor: pointer; }
 #sidebar-toggle:hover { background: #333; }
 #sidebar-toggle:focus-visible { outline: 2px solid #ffdd57; outline-offset: -3px; }
@@ -15,30 +22,35 @@ h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
 
 .filter-group { display: flex; flex-direction: column; gap: 12px; }
 .feature-filter-group { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; padding-left: 12px; border-left: 1px solid #444; }
+.game-store-filters:not(.expanded) #feature-filters { display: none; }
+#game-store-filter .filter-label::after { content: '+'; margin-left: auto; color: var(--sidebar-accent-color); font-weight: 700; }
+.game-store-filters.expanded #game-store-filter .filter-label::after { content: '\2212'; }
 .feature-filter-group input:disabled { opacity: 0.45; }
 .filter-label { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 1rem; }
 .filter-label input { transform: scale(1.2); cursor: pointer; }
 
 #store-list { overflow-y: auto; flex-grow: 1; }
 .store-list-item { padding: 10px; border-bottom: 1px solid #333; font-size: 0.9rem; }
-.store-list-item a { color: #ffdd57; text-decoration: none; }
-.store-summary { display: block; margin: 4px 0 7px; color: #666; font-size: 0.9em; line-height: 1.35; white-space: pre-line; }
-#store-list .store-summary { color: #ccc; font-size: 0.85rem; }
+.store-list-item a, .leaflet-popup-content a:not(.directions-button) { color: var(--website-link-color); text-decoration: none; }
+.store-summary { display: block; margin: 2px 0 3px; color: var(--sidebar-text-color); font-size: 0.9em; line-height: 1.35; white-space: pre-line; }
+#store-list .store-summary { font-size: 0.85rem; }
 
 .sidebar-divider { width: 100%; border-color: #333; }
 .credits { flex: 0 0 auto; border-top: 1px solid #333; padding-top: 10px; }
-.credits summary { list-style: none; cursor: pointer; color: #ffdd57; font-weight: 600; }
+.credits summary { list-style: none; cursor: pointer; color: var(--sidebar-accent-color); font-weight: 600; }
 .credits summary::-webkit-details-marker { display: none; }
 .credits summary::after { content: '+'; float: right; }
 .credits[open] summary::after { content: '\2212'; }
-.credits-content { color: #ccc; font-size: 0.8rem; line-height: 1.5; overflow-wrap: anywhere; }
+.credits-content { color: var(--sidebar-text-color); font-size: 0.8rem; line-height: 1.5; overflow-wrap: anywhere; }
 .credits-content p { margin: 6px 0; }
 
 /*Map*/
 #map { flex-grow: 1; min-width: 0; height: 100%; }
+.store-pin-icon { background: transparent; border: 0; }
+.store-pin-icon svg { display: block; width: 25px; height: 41px; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45)); }
 
 /*Popup*/
-.store-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
+.store-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 2px 0; }
 .store-tag { display: inline-block; padding: 3px 7px; border-radius: 4px; background: #53636b; color: #fff; font-size: 0.75rem; font-weight: 600; }
 .store-tag-tcg { background: #26734d; }
 .store-tag-ttrpg { background: #316a9b; }
