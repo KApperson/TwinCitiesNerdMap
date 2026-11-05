@@ -95,6 +95,18 @@
             })[character]);
         }
 
+        function getSafeLogoUrl(value) {
+            const logoUrl = String(value ?? '').trim();
+            if (!logoUrl) return '';
+
+            try {
+                const resolvedUrl = new URL(logoUrl, document.baseURI);
+                return ['http:', 'https:'].includes(resolvedUrl.protocol) ? logoUrl : '';
+            } catch {
+                return '';
+            }
+        }
+
         function renderFeatureFilters() {
             const container = document.getElementById('feature-filters');
             container.innerHTML = '';
@@ -214,17 +226,30 @@
                     const addressHtml = store.address?.trim()
                         ? `<div class="store-address">${escapeHtml(store.address)}</div>`
                         : '';
+                    const websiteUrl = String(store.website ?? '').trim();
+                    const websiteLink = (label, className = '') => websiteUrl
+                        ? `<a${className ? ` class="${className}"` : ''} href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+                        : '';
                     const tagsHtml = storeTagFields
                         .filter(field => hasStoreTag(store, field))
                         .map(field => `<span class="store-tag"${getTagColorStyle(field)}>${formatTagLabel(field)}</span>`)
                         .join('');
+                    const logoUrl = getSafeLogoUrl(store.logo);
+                    const logoHtml = logoUrl
+                        ? `<img class="store-popup-logo" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(store.name)} logo">`
+                        : '';
                     const popupContent = `
-                        <strong>${escapeHtml(store.name)}</strong><br>
-                        ${summaryHtml}
-                        <a class="popup-website-link" href="${store.website}" target="_blank" rel="noopener noreferrer">Visit Website</a>
-                        ${addressHtml}
-                        ${tagsHtml ? `<div class="store-tags">${tagsHtml}</div>` : ''}
-                        <a class="directions-button" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>
+                        <div class="store-popup-layout">
+                            ${logoHtml}
+                            <div class="store-popup-details">
+                                <strong>${escapeHtml(store.name)}</strong><br>
+                                ${summaryHtml}
+                                ${websiteLink('Visit Website', 'popup-website-link')}
+                                ${addressHtml}
+                                ${tagsHtml ? `<div class="store-tags">${tagsHtml}</div>` : ''}
+                                <a class="directions-button" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>
+                            </div>
+                        </div>
                     `;
                     marker.bindPopup(popupContent, { minWidth: 320, maxWidth: 420 });
                     markerLayer.addLayer(marker);
@@ -235,7 +260,7 @@
                         <div class="store-list-details">
                             <strong>${escapeHtml(store.name)}</strong>
                             ${listSummaryHtml}
-                            <a href="${store.website}" target="_blank" rel="noopener noreferrer">Website</a>
+                            ${websiteLink('Website')}
                         </div>
                         <button type="button" class="store-pin-button" aria-label="Show ${escapeHtml(store.name)} on map" title="Show on map">
                             <svg viewBox="0 0 25 41" aria-hidden="true"><path d="M12.5 1C6.2 1 1 6.2 1 12.5c0 8.2 11.5 27 11.5 27s11.5-18.8 11.5-27C24 6.2 18.8 1 12.5 1Z" fill="${pinColor}" stroke="var(--store-pin-outline-color)" stroke-width="1.5"/><circle cx="12.5" cy="12.5" r="3.5" fill="var(--store-pin-center-color)"/></svg>

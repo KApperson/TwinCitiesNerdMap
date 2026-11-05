@@ -1,4 +1,4 @@
-name,address,lat,lng,website,summary,escaperoom,3rdspace,bookstore,tcg,ttrpg,boardgames,videogames,miniatures,playspace,comics,used,foodinhouse,outsidefood,toysAndCollectables
+name,address,lat,lng,website,summary,escaperoom,3rdspace,bookstore,tcg,ttrpg,boardgames,videogames,miniatures,playspace,comics,used,foodinhouse,outsidefood,toysAndCollectables,logo
 The Battleground Cafe,,45.0495995,-93.0156426,https://www.thebattlegroundcafe.com/,That One Store,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,
 Gamezenter,,45.015212,-93.184092,https://gamezenter.com/,Ewwwww,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,
 Source Comics & Games,,45.0032039,-93.1675219,https://sourcecomicsandgames.com/,Just Another Story,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,

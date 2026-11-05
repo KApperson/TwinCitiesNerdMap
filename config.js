@@ -49,7 +49,7 @@ window.SITE_CONFIG = {
     // Tag labels: keys must match CSV columns. Unlisted columns get a readable label automatically.
     tags: {
         // CSV fields listed here are display text or metadata, not colored tags.
-        excludedFields: ['summary'],
+        excludedFields: ['summary', 'logo'],
         // Tag box colors are configured with CSS variables at the top of styles.css.
         labels: {
             tcg: 'TCG',
