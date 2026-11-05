@@ -64,6 +64,16 @@
             return String(store[field] || '').trim().toUpperCase() === 'TRUE';
         }
 
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[character]);
+        }
+
         function renderFeatureFilters() {
             const container = document.getElementById('feature-filters');
             container.innerHTML = '';
@@ -164,13 +174,17 @@
                 if (matchesCategories && store.lat && store.lng) {
                     const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)]);
                     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${store.lat},${store.lng}`)}`;
+                    const summaryHtml = store.summary?.trim()
+                        ? `<div class="store-summary">${escapeHtml(store.summary)}</div>`
+                        : '';
                     const tagsHtml = storeTagFields
                         .filter(field => hasStoreTag(store, field))
                         .map(field => `<span class="store-tag store-tag-${field.toLowerCase()}">${formatTagLabel(field)}</span>`)
                         .join('');
                     const popupContent = `
-                        <strong>${store.name}</strong><br>
-                        ${store.address}<br>
+                        <strong>${escapeHtml(store.name)}</strong><br>
+                        ${summaryHtml}
+                        ${escapeHtml(store.address)}<br>
                         <div class="store-tags">${tagsHtml}</div>
                         <a href="${store.website}" target="_blank" rel="noopener noreferrer">Visit Website</a><br>
                         <a class="directions-button" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>
@@ -180,7 +194,7 @@
 
                     const item = document.createElement('div');
                     item.className = 'store-list-item';
-                    item.innerHTML = `<strong>${store.name}</strong><br><a href="${store.website}" target="_blank">Website</a>`;
+                    item.innerHTML = `<strong>${escapeHtml(store.name)}</strong>${summaryHtml}<br><a href="${store.website}" target="_blank" rel="noopener noreferrer">Website</a>`;
                     listContainer.appendChild(item);
                 }
             });
@@ -193,7 +207,8 @@
             complete: function(results) {
                 storesData = results.data;
                 const websiteIndex = results.meta.fields.indexOf('website');
-                storeTagFields = results.meta.fields.slice(websiteIndex + 1);
+                storeTagFields = results.meta.fields.slice(websiteIndex + 1)
+                    .filter(field => !SITE_CONFIG.tags.excludedFields.includes(field.toLowerCase()));
                 const configuredFeatureFields = SITE_CONFIG.filters.gameStores.subFilters.fields;
                 const categoryFields = SITE_CONFIG.filters.categories.map(category => category.field.toLowerCase());
                 storeFeatureFields = (configuredFeatureFields === null

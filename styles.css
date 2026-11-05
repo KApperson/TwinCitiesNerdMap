@@ -22,6 +22,8 @@ h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
 #store-list { overflow-y: auto; flex-grow: 1; }
 .store-list-item { padding: 10px; border-bottom: 1px solid #333; font-size: 0.9rem; }
 .store-list-item a { color: #ffdd57; text-decoration: none; }
+.store-summary { display: block; margin: 4px 0 7px; color: #666; font-size: 0.9em; line-height: 1.35; white-space: pre-line; }
+#store-list .store-summary { color: #ccc; font-size: 0.85rem; }
 
 .sidebar-divider { width: 100%; border-color: #333; }
 .credits { flex: 0 0 auto; border-top: 1px solid #333; padding-top: 10px; }

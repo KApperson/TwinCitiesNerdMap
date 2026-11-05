@@ -29,6 +29,8 @@ window.SITE_CONFIG = {
 
     // Tag labels: keys must match CSV columns. Unlisted columns get a readable label automatically.
     tags: {
+        // CSV fields listed here are display text or metadata, not colored tags.
+        excludedFields: ['summary'],
         labels: {
             tcg: 'TCG',
             ttrpg: 'TTRPG',
