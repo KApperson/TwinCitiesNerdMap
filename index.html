@@ -203,6 +203,12 @@
                     const summaryHtml = store.summary?.trim()
                         ? `<div class="store-summary">${escapeHtml(store.summary)}</div>`
                         : '';
+                    const listSummaryHtml = store.summary?.trim()
+                        ? `<span class="store-summary">${escapeHtml(store.summary)}</span>`
+                        : '';
+                    const addressHtml = store.address?.trim()
+                        ? `<div class="store-address">${escapeHtml(store.address)}</div>`
+                        : '';
                     const tagsHtml = storeTagFields
                         .filter(field => hasStoreTag(store, field))
                         .map(field => `<span class="store-tag store-tag-${field.toLowerCase()}">${formatTagLabel(field)}</span>`)
@@ -210,9 +216,9 @@
                     const popupContent = `
                         <strong>${escapeHtml(store.name)}</strong><br>
                         ${summaryHtml}
-                        ${escapeHtml(store.address)}<br>
-                        <div class="store-tags">${tagsHtml}</div>
-                        <a href="${store.website}" target="_blank" rel="noopener noreferrer">Visit Website</a><br>
+                        <a class="popup-website-link" href="${store.website}" target="_blank" rel="noopener noreferrer">Visit Website</a>
+                        ${addressHtml}
+                        ${tagsHtml ? `<div class="store-tags">${tagsHtml}</div>` : ''}
                         <a class="directions-button" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>
                     `;
                     marker.bindPopup(popupContent, { minWidth: 320, maxWidth: 420 });
@@ -220,7 +226,11 @@
 
                     const item = document.createElement('div');
                     item.className = 'store-list-item';
-                    item.innerHTML = `<strong>${escapeHtml(store.name)}</strong>${summaryHtml}<br><a href="${store.website}" target="_blank" rel="noopener noreferrer">Website</a>`;
+                    item.innerHTML = `<button type="button" class="store-select-button"><strong>${escapeHtml(store.name)}</strong>${listSummaryHtml}</button><a href="${store.website}" target="_blank" rel="noopener noreferrer">Website</a>`;
+                    item.querySelector('.store-select-button').addEventListener('click', () => {
+                        map.setView(marker.getLatLng(), Math.max(map.getZoom(), 14));
+                        marker.openPopup();
+                    });
                     listContainer.appendChild(item);
                 }
             });
