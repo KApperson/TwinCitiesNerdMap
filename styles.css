@@ -14,6 +14,8 @@ h2 { margin-top: 0; color: #ffdd57; font-size: 1.5rem; }
 .sidebar-collapsed .toggle-chevron { transform: rotate(-45deg); }
 
 .filter-group { display: flex; flex-direction: column; gap: 12px; }
+.feature-filter-group { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; padding-left: 12px; border-left: 1px solid #444; }
+.feature-filter-group input:disabled { opacity: 0.45; }
 .filter-label { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 1rem; }
 .filter-label input { transform: scale(1.2); cursor: pointer; }
 

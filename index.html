@@ -13,15 +13,14 @@
     <div id="sidebar">
         <h2>Store Filter</h2>
         <div class="filter-group">
-            <label class="filter-label"><input type="checkbox" id="tcg"> Trading Card Games (TCG)</label>
-            <label class="filter-label"><input type="checkbox" id="ttrpg"> Tabletop RPGs (TTRPG)</label>
-            <label class="filter-label"><input type="checkbox" id="boardgames"> Board Games</label>
-            <label class="filter-label"><input type="checkbox" id="retro">Video Games</label>
-			<label class="filter-label"><input type="checkbox" id="miniatures">Miniatures</label>
-			<label class="filter-label"><input type="checkbox" id="comics">Comics</label>
-			<label class="filter-label"><input type="checkbox" id="books">Books</label>
+            <label class="filter-label"><input type="checkbox" id="filter-bookstores"> Bookstores</label>
+            <label class="filter-label"><input type="checkbox" id="filter-comics"> Comics</label>
         </div>
         <hr class="sidebar-divider">
+        <div class="filter-group game-store-filters">
+            <label class="filter-label"><input type="checkbox" id="filter-game-stores"> Game Stores</label>
+            <div id="feature-filters" class="feature-filter-group"></div>
+        </div>
         <div id="store-list"></div>
         <details class="credits">
             <summary>Credits</summary>
@@ -49,6 +48,7 @@
         // Global storage for the stores once loaded
         let storesData = [];
         let storeTagFields = [];
+        let storeFeatureFields = [];
 
         const tagLabels = {
             tcg: 'TCG',
@@ -56,7 +56,7 @@
             boardgames: 'Board Games',
             videogames: 'Video Games',
             escaperoom: 'Escape Room',
-            '3rdspace': '3rd Space',
+            thirdspace: '3rd Space',
             foodinhouse: 'Food In-House',
             outsidefood: 'Outside Food'
         };
@@ -66,6 +66,34 @@
                 .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
                 .replace(/[_-]+/g, ' ')
                 .replace(/\b\w/g, character => character.toUpperCase());
+        }
+
+        function hasStoreTag(store, field) {
+            return String(store[field] || '').trim().toUpperCase() === 'TRUE';
+        }
+
+        function renderFeatureFilters() {
+            const container = document.getElementById('feature-filters');
+            container.innerHTML = '';
+
+            storeFeatureFields.forEach(field => {
+                const label = document.createElement('label');
+                label.className = 'filter-label';
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.dataset.storeField = field;
+                checkbox.disabled = !document.getElementById('filter-game-stores').checked;
+                label.append(checkbox, document.createTextNode(` ${formatTagLabel(field)}`));
+                container.appendChild(label);
+            });
+        }
+
+        function syncFeatureFilters() {
+            const enabled = document.getElementById('filter-game-stores').checked;
+            document.querySelectorAll('#feature-filters input').forEach(checkbox => {
+                checkbox.disabled = !enabled;
+                if (!enabled) checkbox.checked = false;
+            });
         }
 
         // Initialize Map near Twin Cities
@@ -99,31 +127,28 @@
             const listContainer = document.getElementById('store-list');
             listContainer.innerHTML = '';
 
-            const activeFilters = {
-                tcg: document.getElementById('tcg').checked,
-                ttrpg: document.getElementById('ttrpg').checked,
-                boardgames: document.getElementById('boardgames').checked,
-                retro: document.getElementById('retro').checked
-            };
+            const bookstoresSelected = document.getElementById('filter-bookstores').checked;
+            const comicsSelected = document.getElementById('filter-comics').checked;
+            const gameStoresSelected = document.getElementById('filter-game-stores').checked;
+            const selectedFeatures = [...document.querySelectorAll('#feature-filters input:checked')]
+                .map(checkbox => checkbox.dataset.storeField);
+            const hasCategoryFilter = bookstoresSelected || comicsSelected || gameStoresSelected;
 
             storesData.forEach(store => {
-                let matchesAll = true;
-                
-                for (let key in activeFilters) {
-                    if (activeFilters[key]) {
-                        // CSV true/false evaluations parse as strings ("TRUE" / "FALSE")
-                        const isSpecialist = String(store[key]).trim().toUpperCase() === "TRUE";
-                        if (!isSpecialist) {
-                            matchesAll = false;
-                        }
-                    }
-                }
+                const isBookstore = hasStoreTag(store, 'books');
+                const isComicsStore = hasStoreTag(store, 'comics');
+                const isGameStore = !isBookstore && !isComicsStore;
+                const matchesFeatures = selectedFeatures.every(field => hasStoreTag(store, field));
+                const matchesCategories = !hasCategoryFilter ||
+                    (bookstoresSelected && isBookstore) ||
+                    (comicsSelected && isComicsStore) ||
+                    (gameStoresSelected && isGameStore && matchesFeatures);
 
-                if (matchesAll && store.lat && store.lng) {
+                if (matchesCategories && store.lat && store.lng) {
                     const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)]);
                     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${store.lat},${store.lng}`)}`;
                     const tagsHtml = storeTagFields
-                        .filter(field => String(store[field]).trim().toUpperCase() === 'TRUE')
+                        .filter(field => hasStoreTag(store, field))
                         .map(field => `<span class="store-tag store-tag-${field.toLowerCase()}">${formatTagLabel(field)}</span>`)
                         .join('');
                     const popupContent = `
@@ -133,7 +158,7 @@
                         <a href="${store.website}" target="_blank" rel="noopener noreferrer">Visit Website</a><br>
                         <a class="directions-button" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>
                     `;
-                    marker.bindPopup(popupContent);
+                    marker.bindPopup(popupContent, { minWidth: 320, maxWidth: 420 });
                     markerLayer.addLayer(marker);
 
                     const item = document.createElement('div');
@@ -152,12 +177,23 @@
                 storesData = results.data;
                 const websiteIndex = results.meta.fields.indexOf('website');
                 storeTagFields = results.meta.fields.slice(websiteIndex + 1);
+                storeFeatureFields = storeTagFields.filter(field => !['books', 'comics'].includes(field.toLowerCase()));
+                renderFeatureFilters();
                 updateMap(); // Initial pass to render pins once data lands
             }
         });
 
-        // 5. Attach Filter Event Listeners
-        document.querySelectorAll('.filter-group input').forEach(input => {
+        const gameStoresToggle = document.getElementById('filter-game-stores');
+        gameStoresToggle.addEventListener('change', () => {
+            syncFeatureFilters();
+            updateMap();
+        });
+        document.getElementById('feature-filters').addEventListener('change', event => {
+            if (event.target.checked) gameStoresToggle.checked = true;
+            syncFeatureFilters();
+            updateMap();
+        });
+        document.querySelectorAll('#filter-bookstores, #filter-comics').forEach(input => {
             input.addEventListener('change', updateMap);
         });
     </script>
