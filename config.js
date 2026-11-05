@@ -1,5 +1,11 @@
 // Site-wide settings live here so the map, filters, and tag labels can be reused or changed centrally.
 window.SITE_CONFIG = {
+    // Browser tab settings: title is displayed in the tab; favicon is a project-relative asset path.
+    page: {
+        title: 'Twin Cities Nerd Map',
+        favicon: 'favicon.svg'
+    },
+
     // Map view: change center coordinates and zoom to choose the initial view.
     map: {
         center: { latitude: 45.0, longitude: -93.15 },
