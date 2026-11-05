@@ -60,6 +60,10 @@
                 .replace(/\b\w/g, character => character.toUpperCase());
         }
 
+        function compareLabels(first, second) {
+            return first.localeCompare(second, undefined, { sensitivity: 'base' });
+        }
+
         function getTagColorStyle(field) {
             const colorKey = field.toLowerCase().replace(/[^a-z0-9_-]/g, '-');
             return ` style="background-color: var(--store-tag-color-${colorKey}, var(--store-tag-color-default))"`;
@@ -111,7 +115,9 @@
             const container = document.getElementById('feature-filters');
             container.innerHTML = '';
 
-            storeFeatureFields.forEach(field => {
+            [...storeFeatureFields]
+                .sort((first, second) => compareLabels(formatTagLabel(first), formatTagLabel(second)))
+                .forEach(field => {
                 const label = document.createElement('label');
                 label.className = 'filter-label';
                 const checkbox = document.createElement('input');
@@ -125,7 +131,9 @@
 
         function renderFilterControls() {
             const categoryContainer = document.getElementById('category-filters');
-            SITE_CONFIG.filters.categories.forEach(category => {
+            [...SITE_CONFIG.filters.categories]
+                .sort((first, second) => compareLabels(first.label, second.label))
+                .forEach(category => {
                 const label = document.createElement('label');
                 label.className = 'filter-label';
                 const checkbox = document.createElement('input');
@@ -198,7 +206,9 @@
                 .map(checkbox => checkbox.dataset.storeField);
             const hasCategoryFilter = selectedCategories.length > 0 || gameStoresSelected;
 
-            storesData.forEach(store => {
+            [...storesData]
+                .sort((first, second) => compareLabels(String(first.name || ''), String(second.name || '')))
+                .forEach(store => {
                 const isCategoryStore = SITE_CONFIG.filters.categories.some(category => hasStoreTag(store, category.field));
                 const isGameStore = !isCategoryStore;
                 const matchesFeatures = selectedFeatures.every(field => hasStoreTag(store, field));
