@@ -18,9 +18,9 @@ window.SITE_CONFIG = {
         defaultColor: '#3388ff',
         categories: {
             // Use filter category fields here, such as bookstore or comics.
-            // bookstore: '#a855f7',
-            // comics: '#e11d48',
-            // gameStores: '#16a34a'
+            bookstore: '#a855f7',
+            comics: '#e11d48',
+            escaperoom: '#16a34a'
         },
         subcategories: {
             // Use CSV tag fields here, such as tcg or boardgames.
