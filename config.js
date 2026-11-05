@@ -33,7 +33,9 @@ window.SITE_CONFIG = {
     filters: {
         categories: [
             { field: 'bookstore', label: 'Bookstores' },
-            { field: 'comics', label: 'Comics' }
+            { field: 'comics', label: 'Comics' },
+            { field: 'escaperoom', label: 'Escape Room' },
+            { field: '3rdspace', label: '3rd Space' }
         ],
         gameStores: {
             label: 'Game Stores',
@@ -48,6 +50,7 @@ window.SITE_CONFIG = {
     tags: {
         // CSV fields listed here are display text or metadata, not colored tags.
         excludedFields: ['summary'],
+        // Tag box colors are configured with CSS variables at the top of styles.css.
         labels: {
             tcg: 'TCG',
             ttrpg: 'TTRPG',

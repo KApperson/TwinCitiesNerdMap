@@ -1,27 +1,51 @@
 
 :root {
+	/* Sidebar and interface colors */
 	--sidebar-background-color: #1a1a1a;
 	--sidebar-text-color: #fff;
 	--sidebar-accent-color: #ffdd57;
 	--website-link-color: #ffdd57;
+	--sidebar-toggle-background-color: #242424;
+	--sidebar-toggle-hover-color: #333;
+	--sidebar-border-color: #333;
+	--sidebar-shadow-color: rgba(0, 0, 0, 0.3);
+	--filter-nested-border-color: #444;
+	--store-pin-hover-color: rgba(255, 255, 255, 0.1);
+	--store-pin-shadow-color: rgba(0, 0, 0, 0.45);
+	--store-pin-center-color: #fff;
+	--store-pin-outline-color: #fff;
+	--transparent-color: transparent;
+	--directions-button-background-color: #ffdd57;
+	--directions-button-text-color: #1a1a1a;
+
+	/* Store tag colors: change a value here to customize a tag's colored box.
+	   Use the lowercase CSV field name in the variable, for example:
+	   --store-tag-color-tcg: #26734d;
+	   Add variables for other CSV tag fields as needed. Unset tags use the default color. */
+	--store-tag-color-default: #53636b;
+	--store-tag-color-tcg: #26734d;
+	--store-tag-color-ttrpg: #316a9b;
+	--store-tag-color-playspace: #a45b25;
+	--store-tag-text-color: #fff;
 }
 
+/* Layout and behavior styles: adjust sizing and spacing below; color values are set above. */
 /*Body*/
 body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; height: 100vh; overflow: hidden; }
 h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 
 /*Sidebar*/
 
-#sidebar { width: 300px; flex: 0 0 300px; background: var(--sidebar-background-color); color: var(--sidebar-text-color); padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px rgba(0,0,0,0.3); overflow: hidden; transition: flex-basis 220ms ease, padding 220ms ease; }
-#sidebar-toggle { flex: 0 0 32px; height: 100vh; padding: 0; display: grid; place-items: center; box-sizing: border-box; border: 0; border-right: 1px solid #333; background: #242424; color: #ffdd57; cursor: pointer; }
-#sidebar-toggle:hover { background: #333; }
-#sidebar-toggle:focus-visible { outline: 2px solid #ffdd57; outline-offset: -3px; }
+#sidebar { width: 300px; flex: 0 0 300px; background: var(--sidebar-background-color); color: var(--sidebar-text-color); padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; z-index: 1000; box-shadow: 2px 0 5px var(--sidebar-shadow-color); overflow: hidden; transition: flex-basis 220ms ease, padding 220ms ease; }
+#sidebar-toggle { flex: 0 0 32px; height: 100vh; padding: 0; display: grid; place-items: center; box-sizing: border-box; border: 0; border-right: 1px solid var(--sidebar-border-color); background: var(--sidebar-toggle-background-color); color: var(--sidebar-accent-color); cursor: pointer; }
+#sidebar-toggle:hover { background: var(--sidebar-toggle-hover-color); }
+#sidebar-toggle:focus-visible { outline: 2px solid var(--sidebar-accent-color); outline-offset: -3px; }
 .toggle-chevron { width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(135deg); transition: transform 220ms ease; }
 .sidebar-collapsed #sidebar { flex-basis: 0; padding-left: 0; padding-right: 0; gap: 0; }
 .sidebar-collapsed .toggle-chevron { transform: rotate(-45deg); }
 
 .filter-group { display: flex; flex-direction: column; gap: 12px; }
-.feature-filter-group { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; padding-left: 12px; border-left: 1px solid #444; }
+.feature-filter-group { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; padding-left: 12px; border-left: 1px solid var(--filter-nested-border-color); }
 .game-store-filters:not(.expanded) #feature-filters { display: none; }
 #game-store-filter .filter-label::after { content: '+'; margin-left: auto; color: var(--sidebar-accent-color); font-weight: 700; }
 .game-store-filters.expanded #game-store-filter .filter-label::after { content: '\2212'; }
@@ -30,16 +54,18 @@ h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 .filter-label input { transform: scale(1.2); cursor: pointer; }
 
 #store-list { overflow-y: auto; flex-grow: 1; }
-.store-list-item { padding: 10px; border-bottom: 1px solid #333; font-size: 0.9rem; }
-.store-select-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
-.store-select-button:hover strong, .store-select-button:focus-visible strong { color: var(--sidebar-accent-color); }
-.store-select-button:focus-visible { outline: 2px solid var(--sidebar-accent-color); outline-offset: 2px; }
+.store-list-item { display: grid; grid-template-columns: minmax(0, 1fr) 32px; align-items: start; gap: 8px; padding: 10px; border-bottom: 1px solid var(--sidebar-border-color); font-size: 0.9rem; }
+.store-list-details { min-width: 0; }
+.store-pin-button { display: grid; place-items: center; width: 32px; height: 36px; padding: 0; border: 0; border-radius: 4px; background: var(--transparent-color); cursor: pointer; }
+.store-pin-button:hover { background: var(--store-pin-hover-color); }
+.store-pin-button:focus-visible { outline: 2px solid var(--sidebar-accent-color); outline-offset: 1px; }
+.store-pin-button svg { width: 18px; height: 30px; filter: drop-shadow(0 1px 2px var(--store-pin-shadow-color)); }
 .store-list-item a, .leaflet-popup-content a:not(.directions-button) { display: block; margin-top: 5px; color: var(--website-link-color); text-decoration: none; }
 .store-summary { display: block; margin: 2px 0 3px; color: var(--sidebar-text-color); font-size: 0.9em; line-height: 1.35; white-space: pre-line; }
 #store-list .store-summary { font-size: 0.85rem; }
 
-.sidebar-divider { width: 100%; border-color: #333; }
-.credits { flex: 0 0 auto; border-top: 1px solid #333; padding-top: 10px; }
+.sidebar-divider { width: 100%; border-color: var(--sidebar-border-color); }
+.credits { flex: 0 0 auto; border-top: 1px solid var(--sidebar-border-color); padding-top: 10px; }
 .credits summary { list-style: none; cursor: pointer; color: var(--sidebar-accent-color); font-weight: 600; }
 .credits summary::-webkit-details-marker { display: none; }
 .credits summary::after { content: '+'; float: right; }
@@ -49,18 +75,15 @@ h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 
 /*Map*/
 #map { flex-grow: 1; min-width: 0; height: 100%; }
-.store-pin-icon { background: transparent; border: 0; }
-.store-pin-icon svg { display: block; width: 25px; height: 41px; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45)); }
+.store-pin-icon { background: var(--transparent-color); border: 0; }
+.store-pin-icon svg { display: block; width: 25px; height: 41px; filter: drop-shadow(0 1px 2px var(--store-pin-shadow-color)); }
 
 /*Popup*/
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--sidebar-background-color); color: var(--sidebar-text-color); }
 .popup-website-link { display: block; margin: 0 0 3px; }
 .store-address { margin-bottom: 2px; }
 .store-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 2px 0; }
-.store-tag { display: inline-block; padding: 3px 7px; border-radius: 4px; background: #53636b; color: #fff; font-size: 0.75rem; font-weight: 600; }
-.store-tag-tcg { background: #26734d; }
-.store-tag-ttrpg { background: #316a9b; }
-.store-tag-playspace { background: #a45b25; }
-.directions-button { display: inline-block; margin-top: 6px; padding: 6px 10px; background: #ffdd57; color: #1a1a1a !important; border-radius: 4px; font-weight: 600; }
+.store-tag { display: inline-block; padding: 3px 7px; border-radius: 4px; background: var(--store-tag-color-default); color: var(--store-tag-text-color); font-size: 0.75rem; font-weight: 600; }
+.directions-button { display: inline-block; margin-top: 6px; padding: 6px 10px; background: var(--directions-button-background-color); color: var(--directions-button-text-color) !important; border-radius: 4px; font-weight: 600; }
 
 
