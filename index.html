@@ -23,7 +23,18 @@
         </div>
         <hr class="sidebar-divider">
         <div id="store-list"></div>
+        <details class="credits">
+            <summary>Credits</summary>
+            <div class="credits-content">
+                <p>Copyright 2026 KApperson</p>
+                <p>Contact kapperson.pfs#nerdmap@gmail.com for updates</p>
+            </div>
+        </details>
     </div>
+
+    <button type="button" id="sidebar-toggle" aria-label="Hide sidebar" aria-controls="sidebar" aria-expanded="true" title="Hide sidebar">
+        <span class="toggle-chevron" aria-hidden="true"></span>
+    </button>
 
     <div id="map"></div>
 
@@ -66,6 +77,21 @@
         }).addTo(map);
 
         const markerLayer = L.layerGroup().addTo(map);
+
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        sidebarToggle.addEventListener('click', () => {
+            const isExpanded = sidebarToggle.getAttribute('aria-expanded') === 'true';
+            document.body.classList.toggle('sidebar-collapsed', isExpanded);
+            sidebarToggle.setAttribute('aria-expanded', String(!isExpanded));
+            sidebarToggle.setAttribute('aria-label', isExpanded ? 'Show sidebar' : 'Hide sidebar');
+            sidebarToggle.title = isExpanded ? 'Show sidebar' : 'Hide sidebar';
+        });
+        sidebar.addEventListener('transitionend', event => {
+            if (event.propertyName === 'flex-basis') {
+                map.invalidateSize({ pan: false });
+            }
+        });
 
         // 3. Filter Engine
         function updateMap() {
