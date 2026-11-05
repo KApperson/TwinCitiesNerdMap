@@ -12,13 +12,10 @@
 
     <div id="sidebar">
         <h2>Store Filter</h2>
-        <div class="filter-group">
-            <label class="filter-label"><input type="checkbox" id="filter-bookstores"> Bookstores</label>
-            <label class="filter-label"><input type="checkbox" id="filter-comics"> Comics</label>
-        </div>
+        <div id="category-filters" class="filter-group"></div>
         <hr class="sidebar-divider">
         <div class="filter-group game-store-filters">
-            <label class="filter-label"><input type="checkbox" id="filter-game-stores"> Game Stores</label>
+            <div id="game-store-filter"></div>
             <div id="feature-filters" class="feature-filter-group"></div>
         </div>
         <div id="store-list"></div>
@@ -42,6 +39,7 @@
    
 	<!-- 2. Papa Parse Engine for CSV Translation -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.6.1/papaparse.min.js"></script>
+    <script src="config.js"></script>
 
 
     <script>
@@ -50,19 +48,8 @@
         let storeTagFields = [];
         let storeFeatureFields = [];
 
-        const tagLabels = {
-            tcg: 'TCG',
-            ttrpg: 'TTRPG',
-            boardgames: 'Board Games',
-            videogames: 'Video Games',
-            escaperoom: 'Escape Room',
-            thirdspace: '3rd Space',
-            foodinhouse: 'Food In-House',
-            outsidefood: 'Outside Food'
-        };
-
         function formatTagLabel(field) {
-            return tagLabels[field.toLowerCase()] || field
+            return SITE_CONFIG.tags.labels[field.toLowerCase()] || field
                 .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
                 .replace(/[_-]+/g, ' ')
                 .replace(/\b\w/g, character => character.toUpperCase());
@@ -88,6 +75,28 @@
             });
         }
 
+        function renderFilterControls() {
+            const categoryContainer = document.getElementById('category-filters');
+            SITE_CONFIG.filters.categories.forEach(category => {
+                const label = document.createElement('label');
+                label.className = 'filter-label';
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `filter-category-${category.field}`;
+                checkbox.dataset.categoryField = category.field;
+                label.append(checkbox, document.createTextNode(` ${category.label}`));
+                categoryContainer.appendChild(label);
+            });
+
+            const gameStoreLabel = document.createElement('label');
+            gameStoreLabel.className = 'filter-label';
+            const gameStoreCheckbox = document.createElement('input');
+            gameStoreCheckbox.type = 'checkbox';
+            gameStoreCheckbox.id = 'filter-game-stores';
+            gameStoreLabel.append(gameStoreCheckbox, document.createTextNode(` ${SITE_CONFIG.filters.gameStores.label}`));
+            document.getElementById('game-store-filter').appendChild(gameStoreLabel);
+        }
+
         function syncFeatureFilters() {
             const enabled = document.getElementById('filter-game-stores').checked;
             document.querySelectorAll('#feature-filters input').forEach(checkbox => {
@@ -96,8 +105,12 @@
             });
         }
 
-        // Initialize Map near Twin Cities
-        const map = L.map('map').setView([45.0, -93.15], 9);
+        renderFilterControls();
+
+        const map = L.map('map').setView(
+            [SITE_CONFIG.map.center.latitude, SITE_CONFIG.map.center.longitude],
+            SITE_CONFIG.map.zoom
+        );
 
         // Load Free OpenStreetMap Tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -127,21 +140,20 @@
             const listContainer = document.getElementById('store-list');
             listContainer.innerHTML = '';
 
-            const bookstoresSelected = document.getElementById('filter-bookstores').checked;
-            const comicsSelected = document.getElementById('filter-comics').checked;
+            const selectedCategories = SITE_CONFIG.filters.categories.filter(category =>
+                document.getElementById(`filter-category-${category.field}`).checked
+            );
             const gameStoresSelected = document.getElementById('filter-game-stores').checked;
             const selectedFeatures = [...document.querySelectorAll('#feature-filters input:checked')]
                 .map(checkbox => checkbox.dataset.storeField);
-            const hasCategoryFilter = bookstoresSelected || comicsSelected || gameStoresSelected;
+            const hasCategoryFilter = selectedCategories.length > 0 || gameStoresSelected;
 
             storesData.forEach(store => {
-                const isBookstore = hasStoreTag(store, 'books');
-                const isComicsStore = hasStoreTag(store, 'comics');
-                const isGameStore = !isBookstore && !isComicsStore;
+                const isCategoryStore = SITE_CONFIG.filters.categories.some(category => hasStoreTag(store, category.field));
+                const isGameStore = !isCategoryStore;
                 const matchesFeatures = selectedFeatures.every(field => hasStoreTag(store, field));
                 const matchesCategories = !hasCategoryFilter ||
-                    (bookstoresSelected && isBookstore) ||
-                    (comicsSelected && isComicsStore) ||
+                    selectedCategories.some(category => hasStoreTag(store, category.field)) ||
                     (gameStoresSelected && isGameStore && matchesFeatures);
 
                 if (matchesCategories && store.lat && store.lng) {
@@ -177,7 +189,11 @@
                 storesData = results.data;
                 const websiteIndex = results.meta.fields.indexOf('website');
                 storeTagFields = results.meta.fields.slice(websiteIndex + 1);
-                storeFeatureFields = storeTagFields.filter(field => !['books', 'comics'].includes(field.toLowerCase()));
+                const configuredFeatureFields = SITE_CONFIG.filters.gameStores.subFilters.fields;
+                const categoryFields = SITE_CONFIG.filters.categories.map(category => category.field.toLowerCase());
+                storeFeatureFields = (configuredFeatureFields === null
+                    ? storeTagFields.filter(field => !categoryFields.includes(field.toLowerCase()))
+                    : configuredFeatureFields.filter(field => storeTagFields.some(tag => tag.toLowerCase() === field.toLowerCase())));
                 renderFeatureFilters();
                 updateMap(); // Initial pass to render pins once data lands
             }
@@ -193,9 +209,7 @@
             syncFeatureFilters();
             updateMap();
         });
-        document.querySelectorAll('#filter-bookstores, #filter-comics').forEach(input => {
-            input.addEventListener('change', updateMap);
-        });
+        document.getElementById('category-filters').addEventListener('change', updateMap);
     </script>
 </body>
 </html>
