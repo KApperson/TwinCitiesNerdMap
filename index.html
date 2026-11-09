@@ -138,7 +138,19 @@
 
             const iconElement = document.createElement('span');
             iconElement.className = 'filter-tile-icon';
-            iconElement.innerHTML = filterIcons[icon.toLowerCase()] || filterIcons.default;
+            const iconKey = icon.toLowerCase();
+            const iconPath = SITE_CONFIG.filterIcons.byField[iconKey] || SITE_CONFIG.filterIcons.default;
+            if (iconPath) {
+                const image = document.createElement('img');
+                image.src = iconPath;
+                image.alt = '';
+                image.onerror = () => {
+                    iconElement.innerHTML = filterIcons[iconKey] || filterIcons.default;
+                };
+                iconElement.appendChild(image);
+            } else {
+                iconElement.innerHTML = filterIcons[iconKey] || filterIcons.default;
+            }
             const labelElement = document.createElement('span');
             labelElement.className = 'filter-tile-label';
             labelElement.textContent = label;

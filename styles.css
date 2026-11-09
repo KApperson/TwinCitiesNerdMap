@@ -33,6 +33,7 @@
 /*Body*/
 body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; height: 100vh; overflow: hidden; }
 h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
+#store-filter-title { width: 100%; max-width: 12ch; margin: 0 auto; text-align: center; line-height: 1.1; text-wrap: balance; }
 
 /*Sidebar*/
 
@@ -55,8 +56,9 @@ h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 .filter-tile[aria-pressed="true"] { background: var(--sidebar-toggle-hover-color); border-color: var(--sidebar-accent-color); }
 .filter-tile:focus-visible { outline: 2px solid var(--sidebar-accent-color); outline-offset: 1px; }
 .filter-tile:disabled { opacity: 0.45; cursor: not-allowed; }
-.filter-tile-icon { display: grid; place-items: center; width: 22px; height: 22px; flex: 0 0 22px; color: var(--sidebar-accent-color); }
+.filter-tile-icon { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 32px; color: var(--sidebar-accent-color); }
 .filter-tile-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.filter-tile-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .filter-tile-label { display: block; max-width: 100%; font-size: 0.68rem; line-height: 1.1; overflow-wrap: anywhere; }
 #sidebar.game-stores-active #category-filters,
 #sidebar.game-stores-active .category-divider { display: none; }
