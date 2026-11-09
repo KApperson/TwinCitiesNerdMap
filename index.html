@@ -13,29 +13,33 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="styles.css">
+    <script src="information.js"></script>
 </head>
 <body>
 
     <div id="sidebar">
-        <h2 id="store-filter-title"></h2>
-        <div id="category-filters" class="filter-grid filter-grid-categories"></div>
-        <div class="filter-group food-filter-group">
-            <h3 id="additional-filter-title"></h3>
-            <div id="additional-filters" class="filter-grid filter-grid-additional"></div>
-        </div>
-        <hr class="sidebar-divider category-divider">
-        <div class="game-store-filters">
-            <div id="game-store-filter" class="filter-grid filter-grid-game-store"></div>
-            <div id="feature-filters" class="filter-grid filter-grid-features"></div>
-        </div>
-        <div id="store-list"></div>
-        <details class="credits">
-            <summary>Credits</summary>
-            <div class="credits-content">
-                <p>Copyright 2026 KApperson</p>
-                <p>Contact kapperson.pfs+nerdmap@gmail.com for updates</p>
+        <div id="sidebar-main" class="sidebar-main">
+            <h2 id="store-filter-title"></h2>
+            <div id="category-filters" class="filter-grid filter-grid-categories"></div>
+            <div class="filter-group food-filter-group">
+                <h3 id="additional-filter-title"></h3>
+                <div id="additional-filters" class="filter-grid filter-grid-additional"></div>
             </div>
-        </details>
+            <hr class="sidebar-divider category-divider">
+            <div class="game-store-filters">
+                <div id="game-store-filter" class="filter-grid filter-grid-game-store"></div>
+                <div id="feature-filters" class="filter-grid filter-grid-features"></div>
+            </div>
+            <div id="store-list"></div>
+            <button type="button" id="info-open" class="info-open-button" aria-controls="info-view" aria-expanded="false">Info</button>
+        </div>
+        <section id="info-view" class="info-view" aria-labelledby="info-title" hidden>
+            <header class="info-view-header">
+                <h2 id="info-title"></h2>
+                <button type="button" id="info-close" class="info-close-button">Back</button>
+            </header>
+            <div id="info-sections" class="info-sections"></div>
+        </section>
     </div>
 
     <button type="button" id="sidebar-toggle" aria-label="Hide sidebar" aria-controls="sidebar" aria-expanded="true" title="Hide sidebar">
@@ -230,6 +234,50 @@
 
         document.getElementById('store-filter-title').textContent = SITE_CONFIG.page.title;
         renderFilterControls();
+
+        function renderInformation() {
+            document.getElementById('info-title').textContent = SITE_INFORMATION.title;
+            const container = document.getElementById('info-sections');
+            container.replaceChildren();
+
+            SITE_INFORMATION.sections.forEach(section => {
+                const article = document.createElement('article');
+                article.className = 'info-section';
+                const heading = document.createElement('h3');
+                heading.textContent = section.title;
+                article.appendChild(heading);
+
+                if (section.text) {
+                    const text = document.createElement('p');
+                    text.textContent = section.text;
+                    article.appendChild(text);
+                }
+                container.appendChild(article);
+            });
+        }
+
+        const sidebarMain = document.getElementById('sidebar-main');
+        const infoView = document.getElementById('info-view');
+        const infoOpenButton = document.getElementById('info-open');
+        const infoCloseButton = document.getElementById('info-close');
+        renderInformation();
+
+        infoOpenButton.addEventListener('click', () => {
+            sidebarMain.hidden = true;
+            infoView.hidden = false;
+            infoOpenButton.setAttribute('aria-expanded', 'true');
+            infoCloseButton.focus();
+        });
+        function closeInformation() {
+            infoView.hidden = true;
+            sidebarMain.hidden = false;
+            infoOpenButton.setAttribute('aria-expanded', 'false');
+            infoOpenButton.focus();
+        }
+        infoCloseButton.addEventListener('click', closeInformation);
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !infoView.hidden) closeInformation();
+        });
 
         const map = L.map('map').setView(
             [SITE_CONFIG.map.center.latitude, SITE_CONFIG.map.center.longitude],
