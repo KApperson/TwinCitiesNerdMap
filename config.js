@@ -34,7 +34,7 @@ window.SITE_CONFIG = {
         categories: [
             { field: 'arcade', label: 'Arcade' },
             { field: 'escaperoom', label: 'Escape Room' },
-            { field: '3rdspace', label: '3rdSpace' },
+            { field: '3rdspace', label: '3rd Space' },
             { field: 'bookstore', label: 'Book Store' },
             { field: 'comics', label: 'Comic Shop' },
             { field: 'toysAndCollectables', label: 'Toys and Collectables' }
@@ -44,8 +44,7 @@ window.SITE_CONFIG = {
             fields: [
                 { field: 'foodinhouse', label: 'Food In-House' },
                 { field: 'outsidefood', label: 'Outside Food' }
-            ],
-            uncategorized: { label: 'Unclassified' }
+            ]
         },
         gameStores: {
             label: 'Game Stores',
