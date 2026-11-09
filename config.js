@@ -32,13 +32,25 @@ window.SITE_CONFIG = {
     // Filter groups: category fields are independent; game-store subfilters match together.
     filters: {
         categories: [
-            { field: 'bookstore', label: 'Bookstores' },
-            { field: 'comics', label: 'Comics' },
+            { field: 'arcade', label: 'Arcade' },
             { field: 'escaperoom', label: 'Escape Room' },
-            { field: '3rdspace', label: '3rd Space' }
+            { field: '3rdspace', label: '3rdSpace' },
+            { field: 'bookstore', label: 'Book Store' },
+            { field: 'comics', label: 'Comic Shop' },
+            { field: 'toysAndCollectables', label: 'Toys and Collectables' }
         ],
+        additional: {
+            label: 'Food Options',
+            fields: [
+                { field: 'foodinhouse', label: 'Food In-House' },
+                { field: 'outsidefood', label: 'Outside Food' }
+            ],
+            uncategorized: { label: 'Unclassified' }
+        },
         gameStores: {
             label: 'Game Stores',
+            // A store is a Game Store when any of these CSV fields is TRUE.
+            fields: ['tcg', 'ttrpg', 'boardgames', 'videogames', 'miniatures', 'playspace'],
             subFilters: {
                 // Use null to include every CSV tag column except category fields; or list field names explicitly.
                 fields: null

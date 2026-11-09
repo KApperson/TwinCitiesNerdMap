@@ -19,6 +19,10 @@
     <div id="sidebar">
         <h2 id="store-filter-title"></h2>
         <div id="category-filters" class="filter-group"></div>
+        <div class="filter-group food-filter-group">
+            <h3 id="additional-filter-title"></h3>
+            <div id="additional-filters" class="filter-group"></div>
+        </div>
         <hr class="sidebar-divider">
         <div class="filter-group game-store-filters">
             <div id="game-store-filter"></div>
@@ -144,6 +148,28 @@
                 categoryContainer.appendChild(label);
             });
 
+            const additionalFilterContainer = document.getElementById('additional-filters');
+            document.getElementById('additional-filter-title').textContent = SITE_CONFIG.filters.additional.label;
+            [...SITE_CONFIG.filters.additional.fields]
+                .sort((first, second) => compareLabels(first.label, second.label))
+                .forEach(filter => {
+                    const label = document.createElement('label');
+                    label.className = 'filter-label';
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `filter-additional-${filter.field}`;
+                    label.append(checkbox, document.createTextNode(` ${filter.label}`));
+                    additionalFilterContainer.appendChild(label);
+                });
+
+            const unclassifiedLabel = document.createElement('label');
+            unclassifiedLabel.className = 'filter-label';
+            const unclassifiedCheckbox = document.createElement('input');
+            unclassifiedCheckbox.type = 'checkbox';
+            unclassifiedCheckbox.id = 'filter-unclassified';
+            unclassifiedLabel.append(unclassifiedCheckbox, document.createTextNode(` ${SITE_CONFIG.filters.additional.uncategorized.label}`));
+            additionalFilterContainer.appendChild(unclassifiedLabel);
+
             const gameStoreLabel = document.createElement('label');
             gameStoreLabel.className = 'filter-label';
             const gameStoreCheckbox = document.createElement('input');
@@ -201,19 +227,31 @@
             const selectedCategories = SITE_CONFIG.filters.categories.filter(category =>
                 document.getElementById(`filter-category-${category.field}`).checked
             );
+            const selectedAdditionalFilters = SITE_CONFIG.filters.additional.fields.filter(filter =>
+                document.getElementById(`filter-additional-${filter.field}`).checked
+            );
+            const unclassifiedSelected = document.getElementById('filter-unclassified').checked;
             const gameStoresSelected = document.getElementById('filter-game-stores').checked;
             const selectedFeatures = [...document.querySelectorAll('#feature-filters input:checked')]
                 .map(checkbox => checkbox.dataset.storeField);
-            const hasCategoryFilter = selectedCategories.length > 0 || gameStoresSelected;
+            const hasCategoryFilter = selectedCategories.length > 0 || selectedAdditionalFilters.length > 0 ||
+                unclassifiedSelected || gameStoresSelected;
+            const recognizedFields = [
+                ...SITE_CONFIG.filters.categories.map(category => category.field),
+                ...SITE_CONFIG.filters.additional.fields.map(filter => filter.field),
+                ...SITE_CONFIG.filters.gameStores.fields
+            ];
 
             [...storesData]
                 .sort((first, second) => compareLabels(String(first.name || ''), String(second.name || '')))
                 .forEach(store => {
-                const isCategoryStore = SITE_CONFIG.filters.categories.some(category => hasStoreTag(store, category.field));
-                const isGameStore = !isCategoryStore;
+                const isGameStore = SITE_CONFIG.filters.gameStores.fields.some(field => hasStoreTag(store, field));
+                const isUnclassified = !recognizedFields.some(field => hasStoreTag(store, field));
                 const matchesFeatures = selectedFeatures.every(field => hasStoreTag(store, field));
                 const matchesCategories = !hasCategoryFilter ||
                     selectedCategories.some(category => hasStoreTag(store, category.field)) ||
+                    selectedAdditionalFilters.some(filter => hasStoreTag(store, filter.field)) ||
+                    (unclassifiedSelected && isUnclassified) ||
                     (gameStoresSelected && isGameStore && matchesFeatures);
 
                 if (matchesCategories && store.lat && store.lng) {
@@ -295,10 +333,16 @@
                 storeTagFields = results.meta.fields.slice(websiteIndex + 1)
                     .filter(field => !SITE_CONFIG.tags.excludedFields.includes(field.toLowerCase()));
                 const configuredFeatureFields = SITE_CONFIG.filters.gameStores.subFilters.fields;
-                const categoryFields = SITE_CONFIG.filters.categories.map(category => category.field.toLowerCase());
+                const excludedSubfilterFields = new Set([
+                    ...SITE_CONFIG.filters.categories.map(category => category.field.toLowerCase()),
+                    ...SITE_CONFIG.filters.additional.fields.map(filter => filter.field.toLowerCase())
+                ]);
                 storeFeatureFields = (configuredFeatureFields === null
-                    ? storeTagFields.filter(field => !categoryFields.includes(field.toLowerCase()))
-                    : configuredFeatureFields.filter(field => storeTagFields.some(tag => tag.toLowerCase() === field.toLowerCase())));
+                    ? storeTagFields.filter(field => !excludedSubfilterFields.has(field.toLowerCase()))
+                    : configuredFeatureFields.filter(field =>
+                        storeTagFields.some(tag => tag.toLowerCase() === field.toLowerCase()) &&
+                        !excludedSubfilterFields.has(field.toLowerCase())
+                    ));
                 renderFeatureFilters();
                 updateMap(); // Initial pass to render pins once data lands
             }
@@ -315,6 +359,7 @@
             updateMap();
         });
         document.getElementById('category-filters').addEventListener('change', updateMap);
+        document.getElementById('additional-filters').addEventListener('change', updateMap);
     </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d502082268284ccd862262c8ce64f75a"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

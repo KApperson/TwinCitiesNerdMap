@@ -45,6 +45,8 @@ h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 .sidebar-collapsed .toggle-chevron { transform: rotate(-45deg); }
 
 .filter-group { display: flex; flex-direction: column; gap: 12px; }
+.food-filter-group { gap: 8px; }
+.food-filter-group h3 { margin: 0; color: var(--sidebar-accent-color); font-size: 1rem; }
 .feature-filter-group { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; padding-left: 12px; border-left: 1px solid var(--filter-nested-border-color); }
 .game-store-filters:not(.expanded) #feature-filters { display: none; }
 #game-store-filter .filter-label::after { content: '+'; margin-left: auto; color: var(--sidebar-accent-color); font-weight: 700; }
