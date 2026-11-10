@@ -6,7 +6,7 @@ window.SITE_INFORMATION = {
     sections: [
         {
             title: 'What is this?',
-            text: 'A community map of Twin Cities game stores, arcades, bookstores, comic shops, escape rooms, and other places for players and collectors.'
+            text: 'A community map of Twin Cities locations that would be interesting to nerds! Based off of the Chicago map created by Goblin Market.'
         },
         {
             title: 'Who made this?',
@@ -14,7 +14,7 @@ window.SITE_INFORMATION = {
         },
         {
             title: 'Similar Maps',
-            text: ''
+            text: 'Chicago - http://nerdychicago.com/'
         },
         {
             title: 'Suggestions and Additions',
