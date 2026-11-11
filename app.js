@@ -118,6 +118,7 @@ function createFilterButton({ id, field, label, icon = field, pinColor, disabled
         const image = document.createElement('img');
         image.src = iconPath;
         image.alt = '';
+        image.classList.toggle('filter-icon-white', SITE_CONFIG.filterIcons.forceWhite);
         image.onerror = () => {
             iconElement.innerHTML = filterIcons[iconKey] || filterIcons.default;
         };

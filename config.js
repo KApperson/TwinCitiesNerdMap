@@ -15,6 +15,8 @@ window.SITE_CONFIG = {
     // Optional filter icons: map lowercase filter fields to relative SVG or PNG paths in images/.
     // SVGs scale automatically; for PNGs use square transparent 64x64 images. Both render at 32x32 CSS pixels.
     filterIcons: {
+        // Set true to render configured image icons in white; set false to preserve their source colors.
+        forceWhite: true,
         // null keeps the built-in SVG icon unless a field-specific image is configured.
         default: null,
         byField: {
