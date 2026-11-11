@@ -12,22 +12,18 @@ window.SITE_CONFIG = {
         zoom: 9
     },
 
-    // Optional PNG filter icons: use square transparent PNGs at 64x64 pixels for crisp high-density display.
-    // The buttons render icons at 32x32 CSS pixels. Center the artwork, keep consistent padding, and avoid text/background fills.
-    // Save images in icons/ and use relative paths. Keys must be lowercase filter fields.
+    // Optional filter icons: map lowercase filter fields to relative SVG or PNG paths in images/.
+    // SVGs scale automatically; for PNGs use square transparent 64x64 images. Both render at 32x32 CSS pixels.
     filterIcons: {
-        // null keeps the built-in SVG icons unless an individual field has a PNG override.
+        // null keeps the built-in SVG icon unless a field-specific image is configured.
         default: null,
         byField: {
-            // arcade: 'icons/arcade.png',
-            // escaperoom: 'icons/escape-room.png',
-            // '3rdspace': 'icons/third-space.png',
-            // bookstore: 'icons/bookstore.png',
-            // comics: 'icons/comics.png',
-            // toysandcollectables: 'icons/toys-and-collectables.png',
-            // foodinhouse: 'icons/food-in-house.png',
-            // outsidefood: 'icons/outside-food.png',
-            // tcg: 'icons/tcg.png'
+            arcade: 'images/joystick-svgrepo-com.svg',
+            gamestores: 'images/controller-svgrepo-com.svg',
+            ttrpg: 'images/dice-25-svgrepo-com.svg',
+            miniatures: 'images/measuring-tape-svgrepo-com.svg',
+            boardgames: 'images/meeple-svgrepo-com.svg',
+            playspace: 'images/table-svgrepo-com.svg'
         }
     },
 
