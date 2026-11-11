@@ -64,12 +64,12 @@ h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 .filter-grid-additional { grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); }
 .filter-grid-game-store { grid-template-columns: minmax(0, 1fr); }
 .filter-grid-features { grid-auto-rows: 68px; }
-.filter-tile { display: flex; min-width: 0; min-height: 60px; padding: 6px 4px; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--sidebar-border-color); border-radius: 4px; background: var(--sidebar-toggle-background-color); color: var(--sidebar-text-color); font: inherit; text-align: center; cursor: pointer; }
-.filter-tile:hover { background: var(--sidebar-toggle-hover-color); border-color: var(--sidebar-accent-color); }
-.filter-tile[aria-pressed="true"] { background: var(--sidebar-toggle-hover-color); border-color: var(--sidebar-accent-color); }
+.filter-tile { display: flex; min-width: 0; min-height: 60px; padding: 6px 4px; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--sidebar-border-color); border-radius: 4px; background: var(--filter-pin-color, var(--sidebar-toggle-background-color)); color: var(--sidebar-text-color); font: inherit; text-align: center; cursor: pointer; }
+.filter-tile:hover { filter: brightness(1.12); }
+.filter-tile[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--sidebar-text-color); }
 .filter-tile:focus-visible { outline: 2px solid var(--sidebar-accent-color); outline-offset: 1px; }
 .filter-tile:disabled { opacity: 0.45; cursor: not-allowed; }
-.filter-tile-icon { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 32px; color: var(--sidebar-accent-color); }
+.filter-tile-icon { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 32px; color: var(--sidebar-text-color); }
 .filter-tile-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .filter-tile-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .filter-tile-label { display: block; max-width: 100%; font-size: 0.68rem; line-height: 1.1; overflow-wrap: anywhere; }

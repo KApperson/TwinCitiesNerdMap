@@ -31,15 +31,23 @@ window.SITE_CONFIG = {
         }
     },
 
-    // Pin colors: omitted or null overrides use the next matching color, then defaultColor.
-    // Specific categories win first, then matching subcategories, then the general gameStores color.
+    // Pin colors also set the matching filter button backgrounds. Omitted colors fall back to defaultColor.
+    // Store pin priority: specific categories, additional filters, subcategories, gameStores, then defaultColor.
+    // Give each primary category a unique color by changing its entry below; keys must match filter fields.
     pins: {
         defaultColor: '#3388ff',
         categories: {
-            // Use filter category fields here, such as bookstore or comics.
+            arcade: '#d97706',
+            escaperoom: '#16a34a',
+            '3rdspace': '#0f766e',
             bookstore: '#a855f7',
             comics: '#e11d48',
-            escaperoom: '#16a34a'
+            toysAndCollectables: '#475569'
+        },
+        additional: {
+            // Optional Food Options pin/button colors, keyed by CSV field.
+            // foodinhouse: '#d97706',
+            // outsidefood: '#0f766e'
         },
         subcategories: {
             // Use CSV tag fields here, such as tcg or boardgames.

@@ -48,11 +48,27 @@ function getStorePinColor(store) {
 
     if (configuredCategory) return pinColors.categories[configuredCategory.field];
 
+    const configuredAdditionalFilter = SITE_CONFIG.filters.additional.fields
+        .find(filter => hasStoreTag(store, filter.field) && isConfiguredColor(pinColors.additional[filter.field]));
+
+    if (configuredAdditionalFilter) return pinColors.additional[configuredAdditionalFilter.field];
+
     const configuredSubcategory = storeFeatureFields
         .find(field => hasStoreTag(store, field) && isConfiguredColor(pinColors.subcategories[field]));
 
     if (configuredSubcategory) return pinColors.subcategories[configuredSubcategory];
     if (isConfiguredColor(pinColors.categories.gameStores)) return pinColors.categories.gameStores;
+    return pinColors.defaultColor;
+}
+
+function getFilterPinColor(field, group) {
+    const pinColors = SITE_CONFIG.pins;
+    if (group === 'category' && pinColors.categories[field]) return pinColors.categories[field];
+    if (group === 'additional' && pinColors.additional[field]) return pinColors.additional[field];
+    if (group === 'subcategory') {
+        return pinColors.subcategories[field] || pinColors.categories.gameStores || pinColors.defaultColor;
+    }
+    if (group === 'gameStores') return pinColors.categories.gameStores || pinColors.defaultColor;
     return pinColors.defaultColor;
 }
 
@@ -79,12 +95,13 @@ function getSafeLogoUrl(value) {
 }
 
 // Filter controls are buttons with aria-pressed state, allowing the same handler for every filter group.
-function createFilterButton({ id, field, label, icon = field, disabled = false, expandable = false }) {
+function createFilterButton({ id, field, label, icon = field, pinColor, disabled = false, expandable = false }) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = `filter-tile${expandable ? ' filter-tile-game-store' : ''}`;
     button.setAttribute('aria-pressed', 'false');
     button.disabled = disabled;
+    button.style.setProperty('--filter-pin-color', pinColor || SITE_CONFIG.pins.defaultColor);
     if (id) button.id = id;
 
     const iconElement = document.createElement('span');
@@ -129,6 +146,7 @@ function renderFeatureFilters() {
             const button = createFilterButton({
                 field,
                 label: formatTagLabel(field),
+                pinColor: getFilterPinColor(field, 'subcategory'),
                 disabled: document.getElementById('filter-game-stores').getAttribute('aria-pressed') !== 'true'
             });
             button.dataset.storeField = field;
@@ -144,7 +162,8 @@ function renderFilterControls() {
             const button = createFilterButton({
                 field: category.field,
                 label: category.label,
-                icon: category.field
+                icon: category.field,
+                pinColor: getFilterPinColor(category.field, 'category')
             });
             button.dataset.categoryField = category.field;
             categoryContainer.appendChild(button);
@@ -155,7 +174,11 @@ function renderFilterControls() {
     [...SITE_CONFIG.filters.additional.fields]
         .sort((first, second) => compareLabels(first.label, second.label))
         .forEach(filter => {
-            const button = createFilterButton({ field: filter.field, label: filter.label });
+            const button = createFilterButton({
+                field: filter.field,
+                label: filter.label,
+                pinColor: getFilterPinColor(filter.field, 'additional')
+            });
             button.dataset.additionalField = filter.field;
             additionalFilterContainer.appendChild(button);
         });
@@ -164,6 +187,7 @@ function renderFilterControls() {
         id: 'filter-game-stores',
         label: SITE_CONFIG.filters.gameStores.label,
         icon: 'gamestores',
+        pinColor: getFilterPinColor('', 'gameStores'),
         expandable: true
     }));
 }
