@@ -1,95 +1,110 @@
-name,address,lat,lng,website,summary,arcade,toysAndCollectables,escaperoom,3rdspace,bookstore,comics,foodinhouse,outsidefood,tcg,ttrpg,boardgames,videogames,miniatures,playspace,used
-1Up Video Games,,45.0150722,-93.010067,https://www.1upgames.store/,,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE
-All Systems Go,,44.9942445,-93.2237314,https://allsystemsgo.games/,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE
-Avant Garden Bookstore,,45.1981545,-93.3886502,https://avantgardenbookstore.com/,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
-Bunker Gaming,,45.225939,-93.396757,https://bunkergaming.net/,,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,,TRUE,FALSE,,FALSE,FALSE,TRUE,
-Can Can Wonderland,,44.964859,-93.1833496,https://www.cancanwonderland.com/,,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
-Comic Book College,,45.0202084,-93.161027,https://www.facebook.com/ComicBookCollege/,,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
-Cryptoy,,45.0309489,-93.0221944,https://cryptoyexchange.com/,,,TRUE,,,,,,,TRUE,,,,,,TRUE
-Dream Haven Books & Comics,,44.9339332,-93.2380589,https://www.dreamhavenbooks.com/,,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
-Dreamers Vault Games - Champlin,,45.1639513,-93.3939861,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Dreamers Vault Games - Saint Louis Park,,44.9485804,-93.3819194,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Dreamers Vault Games Burnsville,,44.7421064,-93.2947779,https://www.dreamersvault.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-Dreamers Vault Games Eden Prairie,,44.8524253,-93.4306322,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Dreamers Vault Games Minneapolis,,44.9182393,-93.2163713,https://www.dreamersvault.com/,,,,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-Dreamers Vault Games Roseville,,44.9926002,-93.1483092,https://www.dreamersvault.com/,,,,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-Dreamers Vault Games South Saint Paul,,44.8887064,-93.049391,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Dumpster Cat Games,,44.923535,-93.2165829,https://www.dumpstercatgames.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE
-Escape The Room Minneapolis,,44.9742671,-93.2741944,https://escapetheroom.com/minneapolis/,,FALSE,,TRUE,,,,,,,,,,,,
-Fox Den Board Game Cafe,,44.7784029,-93.2806963,https://www.foxdenbgc.com/,,FALSE,,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-Fragmented Nostalgia,,45.0312161,-93.0222157,https://fragnos.com/,,FALSE,TRUE,FALSE,FALSE,FALSE,,,,TRUE,,,,,,
-Galaxy Games,,44.8052148,-93.1463177,https://www.facebook.com/GalaxyGamesEaganMN/,,,,FALSE,,,,,,TRUE,TRUE,,FALSE,FALSE,,
-Game Haven,,44.0347484,-92.4634667,https://mygamehaven.com/public/home,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-GameRelated,,45.0308102,-92.9839828,https://gamerelatedtcg.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE
-Games By James - Ridgedale,,44.9674776,-93.4370864,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Games by James - Rosedale,,45.0127054,-93.1708663,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Games by James - Southdale,,44.8806864,-93.3260481,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Games By James & Air Traffic Toys - Crossroads,,45.5560977,-94.2096394,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Gamezenter,,45.015212,-93.184092,https://gamezenter.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE
-Goblet TCG,,44.8804856,-93.0049045,https://goblettcg.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Grey Duck Games & Toys,,45.092362,-93.4381528,https://greyducktoys.com/,,,TRUE,,,,,,,TRUE,,TRUE,,,,
-Hi-Score Video Games - Blaine,,45.1990587,-93.2321431,http://www.hiscoregames.com/,,,,,,,,,,TRUE,,,TRUE,,,TRUE
-Hi-Score Video Games - Woodbury,,44.9251853,-92.9737628,http://www.hiscoregames.com/,,,,,,,,,,TRUE,,,TRUE,,,TRUE
-KhangTCG Collectibles,,45.1122808,-93.4024749,https://khangtcg.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Krakenhits,,45.0974897,-93.2644636,https://krakenhits.com/,,,,FALSE,,FALSE,FALSE,,,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE
-Level Up Games - Hastings,,44.7441418,-92.8514379,https://www.levelupshoponline.com/,,,,FALSE,,,,,,TRUE,,,TRUE,,,TRUE
-Level Up Games Minneapolis,,44.9678415,-93.2791559,https://www.levelupshoponline.com/,,,,FALSE,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,TRUE
-Level Up Saint Paul,,44.9020522,-93.1712482,https://www.levelupshoponline.com/,,,,FALSE,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,TRUE
-Lodestone Coffee and Games LLC,,44.9535967,-93.4164431,https://lodestonegames.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Magers & Quinn Booksellers,,44.947125,-93.298676,https://www.magersandquinn.com/,,,,,,TRUE,,,,,,,,,,
-Magus Books & Herbs,,45.0139413,-93.2476174,https://www.magusbooks.com/,,,,,,TRUE,,,,,,,,,,
-Midtown Hobby Shop and Gaming,,45.197418,-93.3896016,https://www.facebook.com/profile.php?id=61577434076320,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Mischief Toy Store,,44.9397119,-93.1347536,https://www.mischieftoy.com/,,,TRUE,,,,,,,,,,,,,
-Mission Manor Escape Rooms,,44.9917148,-93.2436438,https://www.missionmanor.site/,,,,TRUE,,,,,,,,,,,,
-Moon Palace Books,,44.9472658,-93.2337772,https://moonpalacebooks.com/,,,,,,TRUE,,,,,,,,,,
-Mystic Fortress Games,,44.8505919,-93.787808,https://mysticfortressgames.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Nerdinout - Coon Rapids,,45.172965,-93.3444035,https://nerdinout.com/locations/coon-rapids-mn/,,,TRUE,,,,,,,,,,,,,
-NerdinOut - Inver Grove Heights,,44.8180791,-93.0422777,https://nerdinout.com/locations/inver-grove-heights-mn/,,,TRUE,,,,,,,,,,,,,
-Once Upon A Crime,,44.955701,-93.287295,https://onceuponacrimebooks.com/,,,,,,TRUE,,,,,,,,,,
-Phoenix Games,,45.0813295,-93.24094,https://www.facebook.com/profile.php?id=100057504457911,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Punch Out Gaming,,45.2703164,-92.9850143,https://punchoutgaming.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE
-PuzzleWorks Escape Co.,,44.9641494,-93.1829757,https://www.puzzle.works/,,,,TRUE,,,,,,,,,,,,
-Rivertown Games,,44.564526,-92.53515,https://www.rivertowngames.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Rockhopper Comics and Games,,45.0076917,-93.3825007,https://www.facebook.com/rockhoppercomicsandgames/,,,,,,,TRUE,,,,,,,,,
-Solz Gaming & Collectables,,44.9506196,-93.0292641,https://solzgc.com/,,,,,,,,,,TRUE,,,,,TRUE,
-Source Comics & Games,,45.0032039,-93.1675219,https://sourcecomicsandgames.com/,,,,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE
-Steamship Games,,44.9481557,-93.2888493,https://www.facebook.com/steamshipgames/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Story Arc Comics & Collectibles,,44.7451593,-93.3532728,https://www.storyarccomics.com/,,,,FALSE,FALSE,FALSE,TRUE,FALSE,,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-Table Top Tournaments,,45.0542586,-93.3629049,https://www.tabletoptournaments.us/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-The Battleground Cafe,,45.0495995,-93.0156426,https://www.thebattlegroundcafe.com/,,,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-The Curious Crow Company,,45.1377538,-93.1672573,https://curiouscrowcompany.com/,,,TRUE,,TRUE,,,,,,TRUE,,,,,TRUE
-The Enchanted Quill,,45.507131,-92.9962612,https://www.enchantedquillmn.com/,,,,,,TRUE,,,,,TRUE,,,,,
-The Forge,,44.828755,-93.5974731,https://www.theforgemn.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-The Gathering Emporium,,45.1094058,-93.3851738,https://www.thegatheringemporium.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,TRUE,TRUE
-The Lodge of Lazarus Crowe,,44.9357657,-93.114429,https://lazaruslodge.com/,,,,TRUE,,,,,,,,,,,,
-The Mana Dojo,,44.7439396,-93.28886,https://www.themanadojo.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-The Second Hand,,44.9987642,-93.2495162,https://thesecondhandmn.com/,,,,FALSE,TRUE,FALSE,,,,,,,,,,
-The TCG Dojo,,44.9024217,-93.3998515,https://www.thetcgdojo.shop/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
-Thunderbolt Anime/Gift Shop,,45.031559,-93.0231394,https://www.facebook.com/MNThunderBolt/,,,TRUE,,,,,,,,,,,,,
-Tower Games,,44.9316201,-93.2781035,https://www.towergamesmn.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
-Trapped Puzzle Rooms,,44.9245524,-93.1672907,https://www.trappedpuzzlerooms.com/,,,,TRUE,,,,,,,,,,,,
-Trapped Puzzle Rooms,,44.989933,-93.2748565,https://www.trappedpuzzlerooms.com/,,,,TRUE,,,,,,,,,,,,
-Uncle Hugo's Science Fiction Bookstore,,44.9470239,-93.2325175,http://www.unclehugo.com/prod/index.shtml,,,,,,TRUE,,,,,,,,,,
-Up-Down Minneapolis,,44.9478327,-93.288372,https://updownarcadebar.com/minneapolis/,,TRUE,,,,,,,,,,,,,,
-Wyldwolf Games,,45.174691,-93.3426376,https://wyldwolfgames.com/,,,,,TRUE,,,,,,TRUE,,,,,
-Wyldwolf Games,,44.9897233,-93.2420282,https://wyldwolfgames.com/,,,,,TRUE,,,,,,TRUE,,,,,
-Stillwater Escape,,45.056872,-92.807166,http://stillwaterescape.com/,,,,TRUE,,,,,,,,,,,,
-Breakout Games,,44.9678021,-93.7431059,https://www.breakoutgames.com/minneapolis,,,,TRUE,,,,,,,,,,,,
-Zero Hour Escape Rooms,,45.0034044,-93.4459149,https://zerohourescaperooms.com/,,,,TRUE,,,,,,,,,,,,
-Lock and Key Escape Rooms,,44.880823,-93.3267133,http://www.lockandkeyescape.com/,,,,TRUE,,,,,,,,,,,,
-No Esc Puzzle Collective,,44.7844033,-93.5568669,http://no-esc.com/,,,,TRUE,,,,,,,,,,,,
-The Escape Game Minneapolis,,44.8554958,-93.2427289,https://theescapegame.com/minneapolis/,,,,TRUE,,,,,,,,,,,,
-Escape Odyssey,,45.3032293,-93.56975,https://www.escapeodyssey.net/,,,,TRUE,,,,,,,,,,,,
-Enigma Adventures,,44.8509114,-93.2393267,https://enigmaadventures.com/,,,,TRUE,,,,,,,,,,,,
-Escapology Burnsville,,44.7436155,-93.2901514,https://www.escapology.com/en/burnsville-mn,,,,TRUE,,,,,,,,,,,,
-Hot Comics Richfield,,44.8509313,-93.5871615,http://www.hotcomicsandcollectibles.com/,,,,,,,TRUE,,,,,,,,,
-Nostalgia Zone Comic Books,,44.9482283,-93.2233427,https://www.nostalgiazone.com/,,,,,,,TRUE,,,,,,,,,
-Odd Mart,,44.9566884,-93.2909387,http://oddmart.com/,,,,,,,TRUE,,,,,,,,,
-Most Wanted Comics,,44.8102965,-93.3308469,https://mostwantedcomics.com/,,,,,,,TRUE,,,,,,,,,
-Mind's Eye Comics,,44.9811148,-93.1971879,https://mindseyecomics.com/,,,,,,TRUE,,,,,,,,,,
-New Moons Bookshop,,45.261508,-92.9700258,https://www.newmoonsbookshop.com/,,,,,,TRUE,,,,,,,,,,
-Lake Country Booksellers,,45.0852594,-93.0137267,http://lakecountrybooksellers.com/,,,,,,TRUE,,,,,,,,,,
-Midway Used and Rare Books,,44.955883,-93.1692619,https://www.midwaybook.com/,,,,,,TRUE,,,,,,,,,,
-Acorn Bookshop,,44.9812057,-93.1977193,https://www.acornbookshop.com/,,,,,,TRUE,,,,,,,,,,
-Story Line Books,,44.9474309,-93.0890531,https://storylinebooks.com/,,,,,,TRUE,,,,,,,,,,
-Black Garnet Books,,44.9559411,-93.1585274,http://blackgarnetbooks.com/,,,,,,TRUE,,,,,,,,,,
+name,Verified Date,address,lat,lng,website,summary,arcade,toysAndCollectables,escaperoom,3rdspace,bookstore,comics,foodinhouse,outsidefood,tcg,ttrpg,boardgames,videogames,miniatures,playspace,used
+1Up Video Games,,,45.0150722,-93.010067,https://www.1upgames.store/,,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE
+All Systems Go,,,44.9942445,-93.2237314,https://allsystemsgo.games/,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE
+Avant Garden Bookstore,,,45.1981545,-93.3886502,https://avantgardenbookstore.com/,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
+Bunker Gaming,,,45.225939,-93.396757,https://bunkergaming.net/,,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,,TRUE,FALSE,,FALSE,FALSE,TRUE,
+Can Can Wonderland,,,44.964859,-93.1833496,https://www.cancanwonderland.com/,,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
+Comic Book College,,,45.0202084,-93.161027,https://www.facebook.com/ComicBookCollege/,,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
+Cryptoy,,,45.0309489,-93.0221944,https://cryptoyexchange.com/,,,TRUE,,,,,,,TRUE,,,,,,TRUE
+Dream Haven Books & Comics,,,44.9339332,-93.2380589,https://www.dreamhavenbooks.com/,,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
+Dreamers Vault Games - Champlin,,,45.1639513,-93.3939861,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Dreamers Vault Games - Saint Louis Park,,,44.9485804,-93.3819194,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Dreamers Vault Games Burnsville,,,44.7421064,-93.2947779,https://www.dreamersvault.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+Dreamers Vault Games Eden Prairie,,,44.8524253,-93.4306322,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Dreamers Vault Games Minneapolis,,,44.9182393,-93.2163713,https://www.dreamersvault.com/,,,,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+Dreamers Vault Games Roseville,,,44.9926002,-93.1483092,https://www.dreamersvault.com/,,,,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+Dreamers Vault Games South Saint Paul,,,44.8887064,-93.049391,https://www.dreamersvault.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Dumpster Cat Games,,,44.923535,-93.2165829,https://www.dumpstercatgames.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE
+Escape The Room Minneapolis,,,44.9742671,-93.2741944,https://escapetheroom.com/minneapolis/,,FALSE,,TRUE,,,,,,,,,,,,
+Fox Den Board Game Cafe,,,44.7784029,-93.2806963,https://www.foxdenbgc.com/,,FALSE,,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+Fragmented Nostalgia,,,45.0312161,-93.0222157,https://fragnos.com/,,FALSE,TRUE,FALSE,FALSE,FALSE,,,,TRUE,,,,,,
+Galaxy Games,,,44.8052148,-93.1463177,https://www.facebook.com/GalaxyGamesEaganMN/,,,,FALSE,,,,,,TRUE,TRUE,,FALSE,FALSE,,
+Game Haven,,,44.0347484,-92.4634667,https://mygamehaven.com/public/home,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+GameRelated,,,45.0308102,-92.9839828,https://gamerelatedtcg.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE
+Games By James - Ridgedale,,,44.9674776,-93.4370864,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Games by James - Rosedale,,,45.0127054,-93.1708663,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Games by James - Southdale,,,44.8806864,-93.3260481,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Games By James & Air Traffic Toys - Crossroads,,,45.5560977,-94.2096394,https://gamesbyjames.com/index.php,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Gamezenter,,,45.015212,-93.184092,https://gamezenter.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE
+Goblet TCG,,,44.8804856,-93.0049045,https://goblettcg.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Grey Duck Games & Toys,,,45.092362,-93.4381528,https://greyducktoys.com/,,,TRUE,,,,,,,TRUE,,TRUE,,,,
+Hi-Score Video Games - Blaine,,,45.1990587,-93.2321431,http://www.hiscoregames.com/,,,,,,,,,,TRUE,,,TRUE,,,TRUE
+Hi-Score Video Games - Woodbury,,,44.9251853,-92.9737628,http://www.hiscoregames.com/,,,,,,,,,,TRUE,,,TRUE,,,TRUE
+KhangTCG Collectibles,,,45.1122808,-93.4024749,https://khangtcg.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Krakenhits,,,45.0974897,-93.2644636,https://krakenhits.com/,,,,FALSE,,FALSE,FALSE,,,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE
+Level Up Games - Hastings,,,44.7441418,-92.8514379,https://www.levelupshoponline.com/,,,,FALSE,,,,,,TRUE,,,TRUE,,,TRUE
+Level Up Games Minneapolis,,,44.9678415,-93.2791559,https://www.levelupshoponline.com/,,,,FALSE,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,TRUE
+Level Up Saint Paul,,,44.9020522,-93.1712482,https://www.levelupshoponline.com/,,,,FALSE,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,TRUE
+Lodestone Coffee and Games LLC,,,44.9535967,-93.4164431,https://lodestonegames.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Magers & Quinn Booksellers,,,44.947125,-93.298676,https://www.magersandquinn.com/,,,,,,TRUE,,,,,,,,,,
+Magus Books & Herbs,,,45.0139413,-93.2476174,https://www.magusbooks.com/,,,,,,TRUE,,,,,,,,,,
+Midtown Hobby Shop and Gaming,,,45.197418,-93.3896016,https://www.facebook.com/profile.php?id=61577434076320,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Mischief Toy Store,,,44.9397119,-93.1347536,https://www.mischieftoy.com/,,,TRUE,,,,,,,,,,,,,
+Mission Manor Escape Rooms,,,44.9917148,-93.2436438,https://www.missionmanor.site/,,,,TRUE,,,,,,,,,,,,
+Moon Palace Books,,,44.9472658,-93.2337772,https://moonpalacebooks.com/,,,,,,TRUE,,,,,,,,,,
+Mystic Fortress Games,,,44.8505919,-93.787808,https://mysticfortressgames.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Nerdinout - Coon Rapids,,,45.172965,-93.3444035,https://nerdinout.com/locations/coon-rapids-mn/,,,TRUE,,,,,,,,,,,,,
+NerdinOut - Inver Grove Heights,,,44.8180791,-93.0422777,https://nerdinout.com/locations/inver-grove-heights-mn/,,,TRUE,,,,,,,,,,,,,
+Once Upon A Crime,,,44.955701,-93.287295,https://onceuponacrimebooks.com/,,,,,,TRUE,,,,,,,,,,
+Phoenix Games,,,45.0813295,-93.24094,https://www.facebook.com/profile.php?id=100057504457911,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Punch Out Gaming,,,45.2703164,-92.9850143,https://punchoutgaming.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE
+PuzzleWorks Escape Co.,,,44.9641494,-93.1829757,https://www.puzzle.works/,,,,TRUE,,,,,,,,,,,,
+Rivertown Games,,,44.564526,-92.53515,https://www.rivertowngames.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Rockhopper Comics and Games,,,45.0076917,-93.3825007,https://www.facebook.com/rockhoppercomicsandgames/,,,,,,,TRUE,,,,,,,,,
+Solz Gaming & Collectables,,,44.9506196,-93.0292641,https://solzgc.com/,,,,,,,,,,TRUE,,,,,TRUE,
+Source Comics & Games,,,45.0032039,-93.1675219,https://sourcecomicsandgames.com/,,,,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE
+Steamship Games,,,44.9481557,-93.2888493,https://www.facebook.com/steamshipgames/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Story Arc Comics & Collectibles,,,44.7451593,-93.3532728,https://www.storyarccomics.com/,,,,FALSE,FALSE,FALSE,TRUE,FALSE,,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+Table Top Tournaments,,,45.0542586,-93.3629049,https://www.tabletoptournaments.us/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+The Battleground Cafe,,,45.0495995,-93.0156426,https://www.thebattlegroundcafe.com/,,,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+The Curious Crow Company,,,45.1377538,-93.1672573,https://curiouscrowcompany.com/,,,TRUE,,TRUE,,,,,,TRUE,,,,,TRUE
+The Enchanted Quill,,,45.507131,-92.9962612,https://www.enchantedquillmn.com/,,,,,,TRUE,,,,,TRUE,,,,,
+The Forge,,,44.828755,-93.5974731,https://www.theforgemn.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+The Gathering Emporium,,,45.1094058,-93.3851738,https://www.thegatheringemporium.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,TRUE,TRUE
+The Lodge of Lazarus Crowe,,,44.9357657,-93.114429,https://lazaruslodge.com/,,,,TRUE,,,,,,,,,,,,
+The Mana Dojo,,,44.7439396,-93.28886,https://www.themanadojo.com/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+The Second Hand,,,44.9987642,-93.2495162,https://thesecondhandmn.com/,,,,FALSE,TRUE,FALSE,,,,,,,,,,
+The TCG Dojo,,,44.9024217,-93.3998515,https://www.thetcgdojo.shop/,,,,FALSE,,,,,,TRUE,,,FALSE,,,
+Thunderbolt Anime/Gift Shop,,,45.031559,-93.0231394,https://www.facebook.com/MNThunderBolt/,,,TRUE,,,,,,,,,,,,,
+Tower Games,,,44.9316201,-93.2781035,https://www.towergamesmn.com/,,,,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,FALSE
+Trapped Puzzle Rooms,,,44.9245524,-93.1672907,https://www.trappedpuzzlerooms.com/,,,,TRUE,,,,,,,,,,,,
+Trapped Puzzle Rooms,,,44.989933,-93.2748565,https://www.trappedpuzzlerooms.com/,,,,TRUE,,,,,,,,,,,,
+Uncle Hugo's Science Fiction Bookstore,,,44.9470239,-93.2325175,http://www.unclehugo.com/prod/index.shtml,,,,,,TRUE,,,,,,,,,,
+Up-Down Minneapolis,,,44.9478327,-93.288372,https://updownarcadebar.com/minneapolis/,,TRUE,,,,,,,,,,,,,,
+Wyldwolf Games,,,45.174691,-93.3426376,https://wyldwolfgames.com/,,,,,TRUE,,,,,,TRUE,,,,,
+Wyldwolf Games,,,44.9897233,-93.2420282,https://wyldwolfgames.com/,,,,,TRUE,,,,,,TRUE,,,,,
+Stillwater Escape,,,45.056872,-92.807166,http://stillwaterescape.com/,,,,TRUE,,,,,,,,,,,,
+Breakout Games,,,44.9678021,-93.7431059,https://www.breakoutgames.com/minneapolis,,,,TRUE,,,,,,,,,,,,
+Zero Hour Escape Rooms,,,45.0034044,-93.4459149,https://zerohourescaperooms.com/,,,,TRUE,,,,,,,,,,,,
+Lock and Key Escape Rooms,,,44.880823,-93.3267133,http://www.lockandkeyescape.com/,,,,TRUE,,,,,,,,,,,,
+No Esc Puzzle Collective,,,44.7844033,-93.5568669,http://no-esc.com/,,,,TRUE,,,,,,,,,,,,
+The Escape Game Minneapolis,,,44.8554958,-93.2427289,https://theescapegame.com/minneapolis/,,,,TRUE,,,,,,,,,,,,
+Escape Odyssey,,,45.3032293,-93.56975,https://www.escapeodyssey.net/,,,,TRUE,,,,,,,,,,,,
+Enigma Adventures,,,44.8509114,-93.2393267,https://enigmaadventures.com/,,,,TRUE,,,,,,,,,,,,
+Escapology Burnsville,,,44.7436155,-93.2901514,https://www.escapology.com/en/burnsville-mn,,,,TRUE,,,,,,,,,,,,
+Hot Comics Richfield,,,44.8509313,-93.5871615,http://www.hotcomicsandcollectibles.com/,,,,,,,TRUE,,,,,,,,,
+Nostalgia Zone Comic Books,,,44.9482283,-93.2233427,https://www.nostalgiazone.com/,,,,,,,TRUE,,,,,,,,,
+Odd Mart,,,44.9566884,-93.2909387,http://oddmart.com/,,,,,,,TRUE,,,,,,,,,
+Most Wanted Comics,,,44.8102965,-93.3308469,https://mostwantedcomics.com/,,,,,,,TRUE,,,,,,,,,
+Mind's Eye Comics,,,44.9811148,-93.1971879,https://mindseyecomics.com/,,,,,,TRUE,,,,,,,,,,
+New Moons Bookshop,,,45.261508,-92.9700258,https://www.newmoonsbookshop.com/,,,,,,TRUE,,,,,,,,,,
+Lake Country Booksellers,,,45.0852594,-93.0137267,http://lakecountrybooksellers.com/,,,,,,TRUE,,,,,,,,,,
+Midway Used and Rare Books,,,44.955883,-93.1692619,https://www.midwaybook.com/,,,,,,TRUE,,,,,,,,,,
+Acorn Bookshop,,,44.9812057,-93.1977193,https://www.acornbookshop.com/,,,,,,TRUE,,,,,,,,,,
+Story Line Books,,,44.9474309,-93.0890531,https://storylinebooks.com/,,,,,,TRUE,,,,,,,,,,
+Black Garnet Books,,,44.9559411,-93.1585274,http://blackgarnetbooks.com/,,,,,,TRUE,,,,,,,,,,
+Big Bad Game Store,,,45.033593,-92.8383927,https://www.bigbadgamestore.com/,,,,,,,,,,TRUE,,,,,,
+Top Level Wargames,,,44.9441843,-92.9147023,https://www.toplevelwargames.com/,,,,,,,,,,,,,,TRUE,,
+Silver King Games,,,44.7272713,-92.8555399,https://www.facebook.com/p/Sliver-King-Games-100089870517390/,,,,,,,,,,TRUE,,,,,,
+JK's Cards and Collectables,,,44.6408036,-93.1467786,https://jkcollecting.com/,,,,,,,,,,TRUE,,,,,,
+Hub Hobby - Little Canada,,,45.0095549,-93.10366,https://www.hubhobby.com/,,,TRUE,,,,,,,TRUE,,,,TRUE,,
+Hub Hobby - Richfield,,,44.8866775,-93.3091532,https://www.hubhobby.com/,,,TRUE,,,,,,,TRUE,,,,TRUE,,
+Games Workshop - Eden Prarie,,,44.8512127,-93.4368423,https://www.facebook.com/WHFountainPlace/,,,,,,,,,,,,,,TRUE,TRUE,
+Games Workshop - Fountain Place,,,45.0387086,-93.2232422,https://www.facebook.com/WHSaintAnthonyMN/,,,,,,,,,,,,,,TRUE,TRUE,
+Brickmania,,,45.0044897,-93.2476144,https://www.brickmania.com/brickmania-ghq-store-minneapolis-mn/,,,TRUE,,,,,,,,,,,,,
+Scale Model Supplies,,,44.9549402,-93.1488898,http://www.scalemodelsupplies.com/,,,,,,,,,,,,,,TRUE,,
+Lewis Game Shop - Monticello,,,45.3005203,-94.1049546,http://www.lewisgameshop.com/,,,,,,,,,,TRUE,TRUE,TRUE,,,TRUE,
+VB Games and More,,,44.4482346,-93.1741524,http://vbgamesandmore.com/,,,,,,,,,,TRUE,,TRUE,,,TRUE,
+Game Quest - River Falls,,,44.858709,-92.6256866,https://www.facebook.com/gamequestgamingriverfalls/,,,,,,,,,,TRUE,TRUE,TRUE,,,TRUE,
+Midwest Jedi,,,44.8601907,-92.6273561,https://midwestjedi.com/,,,,,,,,,,TRUE,TRUE,TRUE,,TRUE,TRUE,
+Lewis Game Shop - St Cloud,,,45.4690417,-94.3696193,http://www.lewisgameshop.com/,,,,,,,,,,TRUE,TRUE,TRUE,,,TRUE,
