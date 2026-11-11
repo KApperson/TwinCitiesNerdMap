@@ -8,11 +8,17 @@ let storeFeatureFields = [];
 
 // Built-in SVG fallbacks; configured PNG paths in SITE_CONFIG.filterIcons take precedence.
 const filterIcons = {
-    arcade: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l2 18H4L6 3Z"/><path d="M8 8h8M12 8v7m-2 0h4"/><circle cx="12" cy="18" r=".6"/></svg>',
+    arcade: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v7m-2-7h4M8 13l4-3 4 3v4H8v-4Zm0 7v1m8-1v1M5 22h14"/><circle cx="12" cy="3" r="1.5"/></svg>',
     escaperoom: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v17M3 21h18M9 21V7h6v14"/><circle cx="13" cy="14" r=".6"/></svg>',
     '3rdspace': '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2h-4"/></svg>',
     bookstore: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6c-2-2-5-2-9-1v14c4-1 7-1 9 1m0-14c2-2 5-2 9-1v14c-4-1-7-1-9 1m0-14v14"/></svg>',
-    comics: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v13H9l-5 4V4Z"/><path d="M8 9h8m-8 4h5"/></svg>',
+    comics: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h12v15H8zM5 6v15h12M2 9v12h12"/><path d="M11 7h6m-6 3h6m-9 3h6m-6 3h6"/></svg>',
+    boardgames: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><path d="M12 8v6m0-5-6 4m6-4 6 4m-12 0 3 3m6-3-3 3m-6 0-1 5m10-5 1 5"/></svg>',
+    miniatures: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h13a2 2 0 0 1 2 2v10H5a3 3 0 0 1 0-12Zm0 0v12m5-12v5m4-5v3m4-3v5M5 17v2m4-2v2m4-2v2m4-2v2"/></svg>',
+    playspace: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12v3H6zM8 11v10m8-10v10M3 10v3h3v5H3v-5m18-3v3h-3v5h3v-5"/></svg>',
+    tcg: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 8 10-4 5 12-10 4L4 8Zm4-4 10-2 4 12-4 1M8 11l5-2m-4 5 5-2"/></svg>',
+    ttrpg: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 6v8l-9 6-9-6V8l9-6Z"/><path d="m3 8 9 3 9-3m-9 3v11m-9-6 9-5 9 5m-9-5 4-9"/></svg>',
+    videogames: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l2 5H2l2-5Zm-2 5h20v10H2zM9 10v4h6v-4"/><path d="M7 16h.01m10 0h.01"/></svg>',
     toysandcollectables: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16v12H4zM2 5h20v4H2zM12 5v16m0-16c-5 0-5-5-2-5 2 0 2 3 2 5Zm0 0c5 0 5-5 2-5-2 0-2 3-2 5Z"/></svg>',
     foodinhouse: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v7m-3-7v4a3 3 0 0 0 6 0V2M7 9v13m10-20v20m0-20c3 2 4 5 4 9h-4"/></svg>',
     outsidefood: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-2 13H6L4 8Zm-1 0 2-5h14l2 5M9 12v5m6-5v5"/></svg>',
