@@ -29,7 +29,8 @@ window.SITE_CONFIG = {
             playspace: 'images/table-svgrepo-com.svg',
             '3rdspace': 'images/people-svgrepo-com.svg',
             comics: 'images/speech-bubble-10-svgrepo-com.svg',
-            videogames: 'images/video-game-console-svgrepo-com.svg'
+            videogames: 'images/video-game-console-svgrepo-com.svg',
+            used: 'images/recycle-svgrepo-com.svg'
         }
     },
 
