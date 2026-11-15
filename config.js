@@ -22,10 +22,14 @@ window.SITE_CONFIG = {
         byField: {
             arcade: 'images/joystick-svgrepo-com.svg',
             gamestores: 'images/controller-svgrepo-com.svg',
+            tcg: 'images/cards-svgrepo-com.svg',
             ttrpg: 'images/dice-25-svgrepo-com.svg',
             miniatures: 'images/measuring-tape-svgrepo-com.svg',
             boardgames: 'images/meeple-svgrepo-com.svg',
-            playspace: 'images/table-svgrepo-com.svg'
+            playspace: 'images/table-svgrepo-com.svg',
+            '3rdspace': 'images/people-svgrepo-com.svg',
+            comics: 'images/speech-bubble-10-svgrepo-com.svg',
+            videogames: 'images/video-game-console-svgrepo-com.svg'
         }
     },
 
