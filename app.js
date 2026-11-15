@@ -88,16 +88,20 @@ function escapeHtml(value) {
     })[character]);
 }
 
-function getSafeLogoUrl(value) {
-    const logoUrl = String(value ?? '').trim();
-    if (!logoUrl) return '';
+function getSafeHttpUrl(value) {
+    const url = String(value ?? '').trim();
+    if (!url) return '';
 
     try {
-        const resolvedUrl = new URL(logoUrl, document.baseURI);
-        return ['http:', 'https:'].includes(resolvedUrl.protocol) ? logoUrl : '';
+        const resolvedUrl = new URL(url, document.baseURI);
+        return ['http:', 'https:'].includes(resolvedUrl.protocol) ? url : '';
     } catch {
         return '';
     }
+}
+
+function createStorePinSvg(pinColor) {
+    return `<svg viewBox="0 0 25 41" aria-hidden="true"><path d="M12.5 1C6.2 1 1 6.2 1 12.5c0 8.2 11.5 27 11.5 27s11.5-18.8 11.5-27C24 6.2 18.8 1 12.5 1Z" fill="${escapeHtml(pinColor)}" stroke="var(--store-pin-outline-color)" stroke-width="1.5"/><circle cx="12.5" cy="12.5" r="3.5" fill="var(--store-pin-center-color)"/></svg>`;
 }
 
 // Filter controls are buttons with aria-pressed state, allowing the same handler for every filter group.
@@ -325,7 +329,7 @@ function storeMatchesFilters(store, filters) {
 }
 
 // Keep popup and sidebar item markup in separate builders to make store display changes local.
-function createStorePopup(store, pinColor) {
+function createStorePopup(store) {
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${store.lat},${store.lng}`)}`;
     const summaryHtml = store.summary?.trim()
         ? `<div class="store-summary">${escapeHtml(store.summary)}</div>`
@@ -333,7 +337,7 @@ function createStorePopup(store, pinColor) {
     const addressHtml = store.address?.trim()
         ? `<div class="store-address">${escapeHtml(store.address)}</div>`
         : '';
-    const websiteUrl = String(store.website ?? '').trim();
+    const websiteUrl = getSafeHttpUrl(store.website);
     const websiteLink = websiteUrl
         ? `<a class="popup-website-link" href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">Visit Website</a>`
         : '';
@@ -341,7 +345,7 @@ function createStorePopup(store, pinColor) {
         .filter(field => hasStoreTag(store, field))
         .map(field => `<span class="store-tag"${getTagColorStyle(field)}>${formatTagLabel(field)}</span>`)
         .join('');
-    const logoUrl = getSafeLogoUrl(store.logo);
+    const logoUrl = getSafeHttpUrl(store.logo);
     const logoHtml = logoUrl
         ? `<img class="store-popup-logo" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(store.name)} logo">`
         : '';
@@ -367,7 +371,7 @@ function renderStoreListItem(store, marker, pinColor, map) {
     const summaryHtml = store.summary?.trim()
         ? `<span class="store-summary">${escapeHtml(store.summary)}</span>`
         : '';
-    const websiteUrl = String(store.website ?? '').trim();
+    const websiteUrl = getSafeHttpUrl(store.website);
     const websiteLink = websiteUrl
         ? `<a href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">Website</a>`
         : '';
@@ -379,7 +383,7 @@ function renderStoreListItem(store, marker, pinColor, map) {
             ${websiteLink}
         </div>
         <button type="button" class="store-pin-button" aria-label="Show ${escapeHtml(store.name)} on map" title="Show on map">
-            <svg viewBox="0 0 25 41" aria-hidden="true"><path d="M12.5 1C6.2 1 1 6.2 1 12.5c0 8.2 11.5 27 11.5 27s11.5-18.8 11.5-27C24 6.2 18.8 1 12.5 1Z" fill="${escapeHtml(pinColor)}" stroke="var(--store-pin-outline-color)" stroke-width="1.5"/><circle cx="12.5" cy="12.5" r="3.5" fill="var(--store-pin-center-color)"/></svg>
+            ${createStorePinSvg(pinColor)}
         </button>
     `;
     item.querySelector('.store-pin-button').addEventListener('click', () => {
@@ -404,13 +408,13 @@ function renderStores(map, markerLayer) {
             const pinColor = getStorePinColor(store);
             const icon = L.divIcon({
                 className: 'store-pin-icon',
-                html: `<svg viewBox="0 0 25 41" aria-hidden="true"><path d="M12.5 1C6.2 1 1 6.2 1 12.5c0 8.2 11.5 27 11.5 27s11.5-18.8 11.5-27C24 6.2 18.8 1 12.5 1Z" fill="${escapeHtml(pinColor)}" stroke="var(--store-pin-outline-color)" stroke-width="1.5"/><circle cx="12.5" cy="12.5" r="3.5" fill="var(--store-pin-center-color)"/></svg>`,
+                html: createStorePinSvg(pinColor),
                 iconSize: [25, 41],
                 iconAnchor: [12, 41],
                 popupAnchor: [1, -34]
             });
             const marker = L.marker([parseFloat(store.lat), parseFloat(store.lng)], { icon });
-            marker.bindPopup(createStorePopup(store, pinColor), { minWidth: 320, maxWidth: 420 });
+            marker.bindPopup(createStorePopup(store), { minWidth: 320, maxWidth: 420 });
             markerLayer.addLayer(marker);
             listContainer.appendChild(renderStoreListItem(store, marker, pinColor, map));
         });
