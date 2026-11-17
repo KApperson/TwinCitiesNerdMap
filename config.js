@@ -3,7 +3,8 @@ window.SITE_CONFIG = {
     // Browser tab settings: title is displayed in the tab; favicon is a project-relative asset path.
     page: {
         title: 'Twin Cities Nerd Map',
-        favicon: 'favicon.svg'
+        favicon: 'favicon.svg',
+        infoIcon: 'images/info-circle.svg'
     },
 
     // Map view: change center coordinates and zoom to choose the initial view.

@@ -33,7 +33,7 @@
 /*Body*/
 body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; height: 100vh; overflow: hidden; }
 h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
-#store-filter-title { width: 100%; max-width: 12ch; margin: 0 auto; text-align: center; line-height: 1.1; text-wrap: balance; }
+#store-filter-title { max-width: 12ch; margin: 0; text-align: center; line-height: 1.1; text-wrap: balance; }
 
 /*Sidebar*/
 
@@ -41,11 +41,14 @@ h2 { margin-top: 0; color: var(--sidebar-accent-color); font-size: 1.5rem; }
 .sidebar-main, .info-view { flex: 1; min-height: 0; }
 .sidebar-main { display: flex; flex-direction: column; gap: 20px; }
 .sidebar-main[hidden], .info-view[hidden] { display: none !important; }
+.sidebar-title-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.sidebar-title-row h2 { min-width: 0; margin: 0; }
 .info-view { display: flex; flex-direction: column; gap: 16px; }
 .info-view-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .info-view-header h2 { margin: 0; }
 .info-open-button, .info-close-button { flex: 0 0 auto; padding: 9px 12px; border: 1px solid var(--sidebar-border-color); border-radius: 4px; background: var(--sidebar-toggle-background-color); color: var(--sidebar-text-color); font: inherit; cursor: pointer; }
-.info-open-button { margin-top: auto; }
+.info-open-button { display: grid; width: 44px; height: 44px; padding: 9px; place-items: center; }
+.info-open-button img { display: block; width: 24px; height: 24px; object-fit: contain; }
 .info-open-button:hover, .info-close-button:hover { background: var(--sidebar-toggle-hover-color); border-color: var(--sidebar-accent-color); }
 .info-open-button:focus-visible, .info-close-button:focus-visible { outline: 2px solid var(--sidebar-accent-color); outline-offset: 2px; }
 .info-sections { display: flex; min-height: 0; flex: 1; flex-direction: column; gap: 20px; overflow-y: auto; }

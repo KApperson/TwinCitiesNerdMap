@@ -242,6 +242,7 @@ function renderInformation() {
 // Initialize the sidebar controls and Info view.
 function initializeSidebar() {
     document.getElementById('store-filter-title').textContent = SITE_CONFIG.page.title;
+    document.getElementById('info-open-icon').src = SITE_CONFIG.page.infoIcon;
     renderFilterControls();
     renderInformation();
 

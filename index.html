@@ -20,7 +20,12 @@
 
     <div id="sidebar">
         <div id="sidebar-main" class="sidebar-main">
-            <h2 id="store-filter-title"></h2>
+            <div class="sidebar-title-row">
+                <h2 id="store-filter-title"></h2>
+                <button type="button" id="info-open" class="info-open-button" aria-label="Show information" aria-controls="info-view" aria-expanded="false" title="Show information">
+                    <img id="info-open-icon" alt="" aria-hidden="true">
+                </button>
+            </div>
             <div id="category-filters" class="filter-grid filter-grid-categories"></div>
             <div class="filter-group food-filter-group">
                 <h3 id="additional-filter-title"></h3>
@@ -32,7 +37,6 @@
                 <div id="feature-filters" class="filter-grid filter-grid-features"></div>
             </div>
             <div id="store-list"></div>
-            <button type="button" id="info-open" class="info-open-button" aria-controls="info-view" aria-expanded="false">Info</button>
         </div>
         <section id="info-view" class="info-view" aria-labelledby="info-title" hidden>
             <header class="info-view-header">
